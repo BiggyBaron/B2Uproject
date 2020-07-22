@@ -1,50 +1,45 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS Template</title>
+<head>
+<title>Дыши алматы</title>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
+</head>
 <body class="w3-light-grey">
 
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
-  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <span class="w3-bar-item w3-right">Logo</span>
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Меню</button>
+  <span class="w3-bar-item w3-right">B2U BIG DATA</span>
 </div>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
-  <div class="w3-container w3-row">
-    <div class="w3-col s4">
-      <img src="/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
-    </div>
-    <div class="w3-col s8 w3-bar">
-      <span>Welcome, <strong>Mike</strong></span><br>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-      <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
-    </div>
-  </div>
-  <hr>
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
   <div class="w3-container">
-    <h5>Dashboard</h5>
+    <h5>Данные по проекту</h5>
   </div>
   <div class="w3-bar-block">
-    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Views</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-users fa-fw"></i>  Traffic</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bullseye fa-fw"></i>  Geo</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-diamond fa-fw"></i>  Orders</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  News</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Закрыть меню</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart fa-fw"></i>  Общие данные</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw"></i>  Склады</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
+<br><br>
   </div>
 </nav>
 
@@ -57,225 +52,484 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
   <!-- Header -->
   <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> My Dashboard</b></h5>
+    <h5><b><i class="fa fa-area-chart"></i> Общие данные</b></h5>
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>52</h3>
+          <h3>10%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Messages</h4>
+        <h4>Проложено труб</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>99</h3>
+          <h3>10%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Views</h4>
+        <h4>Произведено консолей</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>23</h3>
+          <h3>1%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Shares</h4>
+        <h4>Установлено консолей</h4>
       </div>
     </div>
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>50</h3>
+          <h3>2%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Users</h4>
+        <h4>Построено станций</h4>
       </div>
     </div>
   </div>
-
+  
+<div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-green w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cog w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>10%</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено деталей</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cubes w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>10%</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Собрано станций</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-pink w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>1%</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Готовых палат</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-purple w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>1/18</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Готовых больниц</h4>
+      </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-area-chart"></i> График Ганта</b></h5>
+  </header>
+    <div class="w3-full">
+      <iframe width="100%" height="500px" src="https://time.graphics/ru/embed?v=1&id=755d9a7a291b06390e7418c30db9a6d2" frameborder="0" allowfullscreen></iframe>
+      <div><a  style="font-size: 12px; text-decoration: none;" title="Timeline generator" href="https://time.graphics">Посмотреть отдельно</a></div>
+    </div>
+  </div>
+  
+  
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-hospital-o"></i> Больницы</b></h5>
+  </header>
+ 
   <div class="w3-panel">
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
-        <h5>Regions</h5>
-        <img src="/w3images/region.jpg" style="width:100%" alt="Google Regional Map">
+        <h5>Выбрать больницу</h5>
+        <select style="width:100%;">
+          <option value="1">ГБ №12</option>
+        </select>
       </div>
-      <div class="w3-twothird">
-        <h5>Feeds</h5>
+      <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+        <h5>Проблемы</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
-            <td><i class="fa fa-user w3-text-blue w3-large"></i></td>
-            <td>New record, over 90 views.</td>
-            <td><i>10 mins</i></td>
+            <td>Арманов Арман</td>
+            <td>Нам не дали зайти в здание</td>
+            <td><i>20 июля 12:50</i></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="w3-twothird">
+        <h5>Данные</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td><i class="fa fa-arrows-h w3-text-blue w3-large"></i></td>
+            <td>Проложено труб</td>
+            <td><i>200/1500</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-            <td>Database error.</td>
-            <td><i>15 mins</i></td>
+            <td><i class="fa fa-gamepad w3-text-red w3-large"></i></td>
+            <td>Установлено консолей</td>
+            <td><i>50/200</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-            <td>New record, over 40 users.</td>
-            <td><i>17 mins</i></td>
+            <td><i class="fa fa-tasks w3-text-yellow w3-large"></i></td>
+            <td>Запущено консолей</td>
+            <td><i>20/200</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-            <td>New comments.</td>
-            <td><i>25 mins</i></td>
+            <td><i class="fa fa-inbox w3-text-red w3-large"></i></td>
+            <td>Готовых палат в общем</td>
+            <td><i>10/70</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-            <td>Check transactions.</td>
-            <td><i>28 mins</i></td>
+            <td><i class="fa fa-group w3-text-blue w3-large"></i></td>
+            <td>Готовых общих палат</td>
+            <td><i>10/50</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-            <td>CPU overload.</td>
-            <td><i>35 mins</i></td>
+            <td><i class="fa fa-microchip w3-text-red w3-large"></i></td>
+            <td>Готовых операционных палат</td>
+            <td><i>10/50</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-            <td>New shares.</td>
-            <td><i>39 mins</i></td>
+            <td><i class="fa fa-bed w3-text-green w3-large"></i></td>
+            <td>Готовых палат в реанимации</td>
+            <td><i>10/50</i></td>
           </tr>
         </table>
       </div>
     </div>
   </div>
   <hr>
-  <div class="w3-container">
-    <h5>General Stats</h5>
-    <p>New Visitors</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-green" style="width:25%">+25%</div>
-    </div>
-
-    <p>New Users</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-orange" style="width:50%">50%</div>
-    </div>
-
-    <p>Bounce Rate</p>
-    <div class="w3-grey">
-      <div class="w3-container w3-center w3-padding w3-red" style="width:75%">75%</div>
-    </div>
-  </div>
-  <hr>
-
-  <div class="w3-container">
-    <h5>Countries</h5>
-    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-      <tr>
-        <td>United States</td>
-        <td>65%</td>
-      </tr>
-      <tr>
-        <td>UK</td>
-        <td>15.7%</td>
-      </tr>
-      <tr>
-        <td>Russia</td>
-        <td>5.6%</td>
-      </tr>
-      <tr>
-        <td>Spain</td>
-        <td>2.1%</td>
-      </tr>
-      <tr>
-        <td>India</td>
-        <td>1.9%</td>
-      </tr>
-      <tr>
-        <td>France</td>
-        <td>1.5%</td>
-      </tr>
-    </table><br>
-    <button class="w3-button w3-dark-grey">More Countries  <i class="fa fa-arrow-right"></i></button>
-  </div>
-  <hr>
-  <div class="w3-container">
-    <h5>Recent Users</h5>
-    <ul class="w3-ul w3-card-4 w3-white">
-      <li class="w3-padding-16">
-        <img src="/w3images/avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Mike</span><br>
-      </li>
-      <li class="w3-padding-16">
-        <img src="/w3images/avatar5.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Jill</span><br>
-      </li>
-      <li class="w3-padding-16">
-        <img src="/w3images/avatar6.png" class="w3-left w3-circle w3-margin-right" style="width:35px">
-        <span class="w3-xlarge">Jane</span><br>
-      </li>
-    </ul>
-  </div>
-  <hr>
-
-  <div class="w3-container">
-    <h5>Recent Comments</h5>
-    <div class="w3-row">
-      <div class="w3-col m2 text-center">
-        <img class="w3-circle" src="/w3images/avatar3.png" style="width:96px;height:96px">
-      </div>
-      <div class="w3-col m10 w3-container">
-        <h4>John <span class="w3-opacity w3-medium">Sep 29, 2014, 9:12 PM</span></h4>
-        <p>Keep up the GREAT work! I am cheering for you!! Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+  
+  
+   <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-industry"></i> Производство</b></h5>
+  </header>
+<div class="w3-row-padding w3-margin-bottom">
+<div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено консолей на 1 газ</h4>
       </div>
     </div>
-
-    <div class="w3-row">
-      <div class="w3-col m2 text-center">
-        <img class="w3-circle" src="/w3images/avatar1.png" style="width:96px;height:96px">
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>200/450</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено консолей на 3 газа</h4>
       </div>
-      <div class="w3-col m10 w3-container">
-        <h4>Bo <span class="w3-opacity w3-medium">Sep 28, 2014, 10:15 PM</span></h4>
-        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p><br>
+    </div>
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>54/100</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Средняя скорость производства</h4>
+      </div>
+    </div>
+    
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>62/100</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Производство за сегодня</h4>
       </div>
     </div>
   </div>
-  <br>
-  <div class="w3-container w3-dark-grey w3-padding-32">
-    <div class="w3-row">
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-green">Demographic</h5>
-        <p>Language</p>
-        <p>Country</p>
-        <p>City</p>
+  
+      
+    <hr>
+    <br>
+    <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-third">
+          <h5>Выбрать продукт</h5>
+          <select style="width:100%;">
+          <option value="1">Консоли на 1 газ</option>
+          </select>
       </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-red">System</h5>
-        <p>Browser</p>
-        <p>OS</p>
-        <p>More</p>
-      </div>
-      <div class="w3-container w3-third">
-        <h5 class="w3-bottombar w3-border-orange">Target</h5>
-        <p>Users</p>
-        <p>Active</p>
-        <p>Geo</p>
-        <p>Interests</p>
-      </div>
+      <br>
+      
     </div>
-  </div>
+    <div id="container2" style="height: 500px; min-width: 310px"></div>
+    
+    <header class="w3-container" style="padding-top:22px">
+      <h5><b><i class="fa fa-plane"></i> Доставка из КНР</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-quarter">
+            <div class="w3-container w3-blue w3-padding-16">
+              <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3>2530/4800</h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Произведено деталей</h4>
+            </div>
+          </div>
+          
+          <div class="w3-quarter">
+            <div class="w3-container w3-teal w3-padding-16">
+              <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3>200/4800</h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Доставлено деталей</h4>
+            </div>
+          </div>
+          
+          <div class="w3-half">
+            <h5>Вылеты</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td>Рейс первый</td>
+            <td><i>20 июля 12:50</i></td>
+          </tr>
+          <tr>
+            <td>Рейс второй</td>
+            <td><i>20 июля 12:50</i></td>
+          </tr>
+          <tr>
+            <td>Рейс третий</td>
+            <td><i>20 июля 12:50</i></td>
+          </tr>
+        </table>
+          </div>
+
+
+        </div>
+        
+            
+          <hr>
+          <br>
+
+          <header class="w3-container" style="padding-top:22px">
+            <h5><b><i class="fa fa-shopping-cart"></i> Склады</b></h5>
+          </header>
+          <div class="w3-full">
+            <h5>Детали</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td>Количество центральных крышек</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество оснований</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество боковых оснований</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество боковых крышек</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество соединительных профилей</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество рельс на складе</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество боковых крышек на двойные</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество клапанов AIR</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество клапанов VAC</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество клапанов CO2</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество клапанов O2</td>
+            <td><i>120/1400</i></td>
+          </tr>
+          <tr>
+            <td>Количество СИЗов</td>
+            <td><i>120/1400</i></td>
+          </tr>
+        </table>
+          </div>
+
+
+          <header class="w3-container" style="padding-top:22px">
+            <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
+          </header>
+          <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+              
+              <div class="w3-third">
+                <h5>Станции</h5>
+                <table class="w3-table w3-striped w3-white">
+                  <tr>
+                    <td>Станция 1</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                  <tr>
+                    <td>Станция 2</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                  <tr>
+                    <td>Станция 3</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                  <tr>
+                    <td>Станция 4</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                  <tr>
+                    <td>Станция 5</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                  <tr>
+                    <td>Станция 6</td>
+                    <td><i>Построено</i></td>
+                  </tr>
+                </table>
+              </div>
+              
+              <div class="w3-twothird">
+                <h5>Карта станций</h5>
+                <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3A684a1bf4066873ab85251bbd24388af44700d105f56c48d0cda30251c8c3d138&amp;source=constructor" width="100%" height="500" frameborder="0"></iframe>
+              </div>
+            </div>
+          </div>
+          <hr>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>FOOTER</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    <h4>Админ панель</h4>
+    <p>Сделано <a href="https://cleverest.tech" target="_blank">Cleverest Technologies</a></p>
   </footer>
 
   <!-- End page content -->
 </div>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  Highcharts.setOptions({
+    lang: {
+            loading: 'Загрузка...',
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+            shortMonths: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+            exportButtonTitle: "Экспорт",
+            printButtonTitle: "Печать",
+            rangeSelectorFrom: "С",
+            rangeSelectorTo: "По",
+            rangeSelectorZoom: "Период",
+            downloadPNG: 'Скачать PNG',
+            downloadJPEG: 'Скачать JPEG',
+            downloadPDF: 'Скачать PDF',
+            downloadSVG: 'Скачать SVG',
+            printChart: 'Напечатать график'   
+        }        
+});
+		var data = [[1167609600000, 22], [1167696000000, 25], [1167782400000, 43], [1167868800000, 58], [1167955200000, 64], [1168214400000, 33]];
+    
+    var startDate = new Date(data[data.length - 1][0]), // Get year of last data point
+        minRate = 1,
+        maxRate = 0,
+        startPeriod,
+        date,
+        rate,
+        index;
+
+    startDate.setMonth(startDate.getMonth() - 3); // a quarter of a year before last data point
+    startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+    for (index = data.length - 1; index >= 0; index = index - 1) {
+        date = data[index][0]; // data[i][0] is date
+        rate = data[index][1]; // data[i][1] is exchange rate
+        if (date < startPeriod) {
+            break; // stop measuring highs and lows
+        }
+        if (rate > maxRate) {
+            maxRate = rate;
+        }
+        if (rate < minRate) {
+            minRate = rate;
+        }
+    }
+				
+        
+        var MY = Highcharts.stockChart('container2', {
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        yAxis: {
+            title: {
+                text: 'Штук в день'
+            },
+            plotLines: [
+            {
+                value: 35,
+                color: 'red',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'План на день: 35'
+                }
+            }]
+        },
+
+        series: [{
+            name: 'Шт/день',
+            data: data,
+            tooltip: {
+                valueDecimals: 0
+            }
+        }]
+    });
+});
+</script>
 
 <script>
 // Get the Sidebar
@@ -300,6 +554,9 @@ function w3_close() {
   mySidebar.style.display = "none";
   overlayBg.style.display = "none";
 }
+</script>
+<script>
+
 </script>
 
 </body>

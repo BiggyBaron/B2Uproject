@@ -1,6 +1,6 @@
 version: "3"
 services:
-  mobile:
+  log_bot:
     restart: always
     build: ./log_bot
     command: python3 -u ./main.py
@@ -16,10 +16,27 @@ services:
     depends_on:
       - database
 
+  schedule_bot:
+    restart: always
+    build: ./schedule_bot
+    command: python3 -u ./main.py
+    volumes:
+      - .:/cleverest_machine
+    links:
+      - database
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "10"
+    depends_on:
+      - database
+      - log_bot
 
   database:
     restart: always
     image: mongo:3.0.2
+    
   mongo-express:
     restart: always
     image: mongo-express
@@ -27,9 +44,9 @@ services:
       - ME_CONFIG_MONGODB_SERVER=database
       - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
-      - ME_CONFIG_MONGODB_AUTH_DATABASE=entrance
+      - ME_CONFIG_MONGODB_AUTH_DATABASE=b2u
       - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=VeryHardToHack098
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
     ports:
       - "8081:8081"
     links:
