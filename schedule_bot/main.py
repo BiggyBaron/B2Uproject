@@ -42,7 +42,7 @@ def one_time():
             for brigadir in users.find({"position": "Бригадир"}):
                 cid = brigadir["user"]
                 markup = types.ForceReply(selective=False)
-                bot.send_message(cid, "Количество проложенных труб внутри здания за последние 24 часа?", reply_markup=markup)
+                bot.send_message(cid, "Соңғы 24 сағат ішінде ғимараттың ішінде салынған трубалардын  саны?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Нет бригадиров")
     

@@ -194,6 +194,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде ғимараттың сыртында салынған трубалардын  саны?")
             bot.send_message(message.chat.id, "Количество проложенных труб снаружи здания за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество проложенных труб снаружи здания за последние 24 часа?':
             msg = {
@@ -204,6 +205,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде 1 газға орнатылған (іске қосылмаған) консольдердің саны?")
             bot.send_message(message.chat.id, "Количество установленных (не запущенных) консолей на 1 газ за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество установленных (не запущенных) консолей на 1 газ за последние 24 часа?':
             msg = {
@@ -214,6 +216,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде 3 газға орнатылған (іске қосылмаған) консольдердің саны?")
             bot.send_message(message.chat.id, "Количество установленных (не запущенных) консолей на 3 газа за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество установленных (не запущенных) консолей на 3 газа за последние 24 часа?':
             msg = {
@@ -224,6 +227,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде 1 газға арналған консольдердің саны? ")
             bot.send_message(message.chat.id, "Количество запущенных консолей на 1 газ за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество запущенных консолей на 1 газ за последние 24 часа?':
             msg = {
@@ -234,6 +238,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде 3 газға арналған консольдердің саны? ")
             bot.send_message(message.chat.id, "Количество запущенных консолей на 3 газа за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество запущенных консолей на 3 газа за последние 24 часа?':
             msg = {
@@ -244,6 +249,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде жалпы мақсаттағы толық дайын палаталардың саны?")
             bot.send_message(message.chat.id, "Количество полностью готовых палат общего назначения за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество полностью готовых палат общего назначения за последние 24 часа?':
             msg = {
@@ -254,6 +260,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде операциялық блоктың толық дайын палаталарының саны?")
             bot.send_message(message.chat.id, "Количество полностью готовых палат операционного блока за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество полностью готовых палат операционного блока за последние 24 часа?':
             msg = {
@@ -264,6 +271,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Соңғы 24 сағат ішінде толық дайын реанимация палаталарының саны?")
             bot.send_message(message.chat.id, "Количество полностью готовых палат реанимации за последние 24 часа?", reply_markup=markup)
         if message.reply_to_message.text == 'Количество полностью готовых палат реанимации за последние 24 часа?':
             msg = {
@@ -274,6 +282,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Сіз іске қосу-жөндеу жұмыстарын бастадыңыз ба? (+/-)")
             bot.send_message(message.chat.id, "Начали ли Вы пуско-наладочные работы? (+/-)", reply_markup=markup)
         if message.reply_to_message.text == 'Начали ли Вы пуско-наладочные работы? (+/-)':
             msg = {
@@ -284,6 +293,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Іске қосу-жөндеу жұмыстарын аяқтадыңыз ба? (+/-)")
             bot.send_message(message.chat.id, "Закончили ли Вы пуско-наладочные работы? (+/-)", reply_markup=markup)
         if message.reply_to_message.text == 'Закончили ли Вы пуско-наладочные работы? (+/-)':
             msg = {
@@ -294,6 +304,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Сіздің объектіңізде станция тұр ма? (+/-)")
             bot.send_message(message.chat.id, "Стоится ли станция у Вас на объекте? (+/-)", reply_markup=markup)
         if message.reply_to_message.text == 'Стоится ли станция у Вас на объекте? (+/-)':
             msg = {
@@ -304,6 +315,7 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Сіздің объектіде станция толығымен кұрылды ма? (+/-)")
             bot.send_message(message.chat.id, "Построена ли станция у Вас на объекте? (+/-)", reply_markup=markup)
         if message.reply_to_message.text == 'Построена ли станция у Вас на объекте? (+/-)':
             msg = {

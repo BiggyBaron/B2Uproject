@@ -33,12 +33,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Закрыть меню</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart fa-fw"></i>  Общие данные</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw"></i>  Склады</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
+    <a href="#data" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart fa-fw"></i>  Общие данные</a>
+    <a href="#hostpital" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
+    <a href="#industry" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
+    <a href="#delivery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
+    <a href="#warehouse" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw"></i>  Склады</a>
+    <a href="#stations" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
 <br><br>
   </div>
 </nav>
@@ -51,7 +51,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
   <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
+  <header class="w3-container" style="padding-top:22px" id="data">
     <h5><b><i class="fa fa-area-chart"></i> Общие данные</b></h5>
   </header>
 
@@ -152,7 +152,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </div>
   
   
-  <header class="w3-container" style="padding-top:22px">
+  <header class="w3-container" style="padding-top:22px" id="hostpital">
     <h5><b><i class="fa fa-hospital-o"></i> Больницы</b></h5>
   </header>
  
@@ -221,7 +221,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <hr>
   
   
-   <header class="w3-container" style="padding-top:22px">
+   <header class="w3-container" style="padding-top:22px" id="industry">
     <h5><b><i class="fa fa-industry"></i> Производство</b></h5>
   </header>
 <div class="w3-row-padding w3-margin-bottom">
@@ -286,8 +286,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </div>
     <div id="container2" style="height: 500px; min-width: 310px"></div>
     
-    <header class="w3-container" style="padding-top:22px">
-      <h5><b><i class="fa fa-plane"></i> Доставка из КНР</b></h5>
+    <header class="w3-container" style="padding-top:22px" id="delivery">
+      <h5><b><i class="fa fa-plane"></i> Доставка с зарубежья</b></h5>
     </header>
 
     <div class="w3-row-padding w3-margin-bottom">
@@ -338,7 +338,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           <hr>
           <br>
 
-          <header class="w3-container" style="padding-top:22px">
+          <header class="w3-container" style="padding-top:22px" id="warehouse">
             <h5><b><i class="fa fa-shopping-cart"></i> Склады</b></h5>
           </header>
           <div class="w3-full">
@@ -390,13 +390,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           </tr>
           <tr>
             <td>Количество СИЗов</td>
-            <td><i>120/1400</i></td>
+            <td><i>120/800</i></td>
           </tr>
         </table>
           </div>
 
 
-          <header class="w3-container" style="padding-top:22px">
+          <header class="w3-container" style="padding-top:22px" id="stations">
             <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
           </header>
           <div class="w3-panel">
