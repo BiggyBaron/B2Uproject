@@ -148,6 +148,7 @@ def text_handler(message):
                     markup.row('Позиция: Снабжение')
                     markup.row('Позиция: Производство')
                     markup.row('Позиция: Бригадир')
+                    markup.row('Позиция: Склад')
                     markup.row('Позиция: Другое')
                     bot.send_message(message.chat.id, after_registration, reply_markup=markup)
                 else:

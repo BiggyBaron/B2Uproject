@@ -62,7 +62,7 @@ def one_time():
             bot.send_message(group_id, "Игорь Е. не зарегался")
 
         try:
-            cid = users.find_one({"position": "Производство"})["user"]
+            cid = users.find_one({"position": "Склад"})["user"]
             markup = types.ForceReply(selective=False)
             bot.send_message(cid, "Какое количество центральных крышек на складе сейчас?", reply_markup=markup)
         except:
