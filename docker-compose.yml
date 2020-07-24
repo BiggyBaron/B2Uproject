@@ -61,12 +61,12 @@ services:
     environment:
       - ME_CONFIG_MONGODB_SERVER=database
       - ME_CONFIG_MONGODB_PORT=27017
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
       - ME_CONFIG_MONGODB_AUTH_DATABASE=b2u
       - ME_CONFIG_BASICAUTH_USERNAME=naboox
       - ME_CONFIG_BASICAUTH_PASSWORD=The2ndlaw
     ports:
-      - "8081:8081"
+      - "8081:7777"
     links:
       - database
     logging:
