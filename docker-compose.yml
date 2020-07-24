@@ -32,6 +32,24 @@ services:
     depends_on:
       - database
       - log_bot
+  
+  dashboard:
+    restart: always
+    build: ./admin
+    command: python3 -u ./main.py
+    volumes:
+      - ~/database:/data/db
+    ports:
+      - "8080:8080"
+    links:
+      - database
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "10"
+    depends_on:
+      - database
 
   database:
     restart: always
@@ -45,8 +63,8 @@ services:
       - ME_CONFIG_MONGODB_PORT=27017
       - ME_CONFIG_MONGODB_ENABLE_ADMIN=false
       - ME_CONFIG_MONGODB_AUTH_DATABASE=b2u
-      - ME_CONFIG_BASICAUTH_USERNAME=admin
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+      - ME_CONFIG_BASICAUTH_USERNAME=naboox
+      - ME_CONFIG_BASICAUTH_PASSWORD=The2ndlaw
     ports:
       - "8081:8081"
     links:

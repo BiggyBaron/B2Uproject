@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -38,7 +40,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#industry" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
     <a href="#delivery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
     <a href="#warehouse" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw"></i>  Склады</a>
-    <a href="#stations" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
+    <a href="#stations_menu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
 <br><br>
   </div>
 </nav>
@@ -60,7 +62,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>10%</h3>
+          <h3 id="tubes_main">10%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Проложено труб</h4>
@@ -70,7 +72,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>10%</h3>
+          <h3 id="console_main">10%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Произведено консолей</h4>
@@ -80,7 +82,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>1%</h3>
+          <h3 id="installed_console_main">1%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Установлено консолей</h4>
@@ -90,10 +92,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>2%</h3>
+          <h3  id="stations_constructed">2%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Построено станций</h4>
+        <h4>Еще не построено станций</h4>
       </div>
     </div>
   </div>
@@ -103,7 +105,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-green w3-padding-16">
         <div class="w3-left"><i class="fa fa-cog w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>10%</h3>
+          <h3 id="produced_main">10%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Произведено деталей</h4>
@@ -113,7 +115,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-cubes w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>10%</h3>
+          <h3  id="produced_station_main">10%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Собрано станций</h4>
@@ -123,7 +125,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-pink w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>1%</h3>
+          <h3 id="rooms_main">1%</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Готовых палат</h4>
@@ -133,7 +135,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-purple w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>1/18</h3>
+          <h3  id="hospitals_main">0/18</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Готовых больниц</h4>
@@ -160,59 +162,54 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
         <h5>Выбрать больницу</h5>
-        <select style="width:100%;">
-          <option value="1">ГБ №12</option>
+        <select style="width:100%;" id="hospitals_list">
+          <!-- <option value="Общее">Общее</option>
+          <option value="ГКИБ">ГКИБ</option>
+          <option value="МИГ">МИГ</option>
+          <option value="ЦГКБ">ЦГКБ</option>
+          <option value="ДГКИБ">ДГКИБ</option>
+          <option value="БСМП">БСМП</option>
+          <option value="ЦФ">ЦФ</option> -->
         </select>
       </div>
       <div class="w3-row-padding" style="margin:0 -16px">
-      <div class="w3-third">
-        <h5>Проблемы</h5>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td>Арманов Арман</td>
-            <td>Нам не дали зайти в здание</td>
-            <td><i>20 июля 12:50</i></td>
-          </tr>
-        </table>
-      </div>
-      
-      <div class="w3-twothird">
+      <div class="w3-full">
         <h5>Данные</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td><i class="fa fa-arrows-h w3-text-blue w3-large"></i></td>
             <td>Проложено труб</td>
-            <td><i>200/1500</i></td>
+            <td><i id="tubes_mini">200/1500</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-gamepad w3-text-red w3-large"></i></td>
             <td>Установлено консолей</td>
-            <td><i>50/200</i></td>
+            <td><i id="consoles_mini">50/200</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-tasks w3-text-yellow w3-large"></i></td>
             <td>Запущено консолей</td>
-            <td><i>20/200</i></td>
+            <td><i id="started_consoles_mini">20/200</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-inbox w3-text-red w3-large"></i></td>
             <td>Готовых палат в общем</td>
-            <td><i>10/70</i></td>
+            <td><i  id="rooms_mini_all">10/70</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-group w3-text-blue w3-large"></i></td>
             <td>Готовых общих палат</td>
-            <td><i>10/50</i></td>
+            <td><i id="rooms_mini_normal">10/50</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-microchip w3-text-red w3-large"></i></td>
             <td>Готовых операционных палат</td>
-            <td><i>10/50</i></td>
+            <td><i id="rooms_mini_operation">10/50</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-bed w3-text-green w3-large"></i></td>
             <td>Готовых палат в реанимации</td>
-            <td><i>10/50</i></td>
+            <td><i id="rooms_mini_reamination">10/50</i></td>
           </tr>
         </table>
       </div>
@@ -229,7 +226,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>2530/4800</h3>
+          <h3 id="1consoles">2530/4800</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Произведено консолей на 1 газ</h4>
@@ -240,7 +237,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-teal w3-padding-16">
         <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>200/450</h3>
+          <h3 id="3consoles">200/450</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Произведено консолей на 3 газа</h4>
@@ -251,7 +248,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-red w3-padding-16">
         <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>54/100</h3>
+          <h3 id="speed_ave_consoles">54/100</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Средняя скорость производства</h4>
@@ -263,7 +260,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
         <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3>62/100</h3>
+          <h3 id="consoles_today">62/100</h3>
         </div>
         <div class="w3-clear"></div>
         <h4>Производство за сегодня</h4>
@@ -274,7 +271,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       
     <hr>
     <br>
-    <div class="w3-row-padding w3-margin-bottom">
+    <!-- <div class="w3-row-padding w3-margin-bottom">
       <div class="w3-third">
           <h5>Выбрать продукт</h5>
           <select style="width:100%;">
@@ -285,35 +282,35 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       
     </div>
     <div id="container2" style="height: 500px; min-width: 310px"></div>
-    
+     -->
     <header class="w3-container" style="padding-top:22px" id="delivery">
       <h5><b><i class="fa fa-plane"></i> Доставка с зарубежья</b></h5>
     </header>
 
     <div class="w3-row-padding w3-margin-bottom">
-      <div class="w3-quarter">
+      <div class="w3-half">
             <div class="w3-container w3-blue w3-padding-16">
               <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
               <div class="w3-right">
-                <h3>2530/4800</h3>
+                <h3 id="details_done">2530/4800</h3>
               </div>
               <div class="w3-clear"></div>
               <h4>Произведено деталей</h4>
             </div>
           </div>
           
-          <div class="w3-quarter">
+          <div class="w3-half">
             <div class="w3-container w3-teal w3-padding-16">
               <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
               <div class="w3-right">
-                <h3>200/4800</h3>
+                <h3 id="details_delivered">200/4800</h3>
               </div>
               <div class="w3-clear"></div>
               <h4>Доставлено деталей</h4>
             </div>
           </div>
           
-          <div class="w3-half">
+          <!-- <div class="w3-half">
             <h5>Вылеты</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
@@ -329,7 +326,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
             <td><i>20 июля 12:50</i></td>
           </tr>
         </table>
-          </div>
+          </div> -->
 
 
         </div>
@@ -346,57 +343,57 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td>Количество центральных крышек</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w1">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество оснований</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w2">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество боковых оснований</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w3">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество боковых крышек</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w4">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество соединительных профилей</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w5">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество рельс на складе</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w6">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество боковых крышек на двойные</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w7">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество клапанов AIR</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w8">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество клапанов VAC</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w9">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество клапанов CO2</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w10">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество клапанов O2</td>
-            <td><i>120/1400</i></td>
+            <td><i id="w11">120/1400</i></td>
           </tr>
           <tr>
             <td>Количество СИЗов</td>
-            <td><i>120/800</i></td>
+            <td><i id="w12">120/800</i></td>
           </tr>
         </table>
           </div>
 
 
-          <header class="w3-container" style="padding-top:22px" id="stations">
+          <header class="w3-container" style="padding-top:22px" id="stations_menu">
             <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
           </header>
           <div class="w3-panel">
@@ -404,31 +401,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               
               <div class="w3-third">
                 <h5>Станции</h5>
-                <table class="w3-table w3-striped w3-white">
-                  <tr>
+                <table class="w3-table w3-striped w3-white" id="stations">
+                  <!-- <tr>
                     <td>Станция 1</td>
-                    <td><i>Построено</i></td>
-                  </tr>
-                  <tr>
-                    <td>Станция 2</td>
-                    <td><i>Построено</i></td>
-                  </tr>
-                  <tr>
-                    <td>Станция 3</td>
-                    <td><i>Построено</i></td>
-                  </tr>
-                  <tr>
-                    <td>Станция 4</td>
-                    <td><i>Построено</i></td>
-                  </tr>
-                  <tr>
-                    <td>Станция 5</td>
-                    <td><i>Построено</i></td>
-                  </tr>
-                  <tr>
-                    <td>Станция 6</td>
-                    <td><i>Построено</i></td>
-                  </tr>
+                    <td><i id="s1">Еще не построено</i></td>
+                  </tr> -->
                 </table>
               </div>
               
@@ -451,7 +428,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+function chart1() {
   Highcharts.setOptions({
     lang: {
             loading: 'Загрузка...',
@@ -528,7 +505,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }]
     });
-});
+};
 </script>
 
 <script>
@@ -556,6 +533,160 @@ function w3_close() {
 }
 </script>
 <script>
+
+</script>
+
+<script>
+  var tubes_main = document.getElementById("tubes_main");
+  var console_main = document.getElementById("console_main");
+  var installed_console_main = document.getElementById("installed_console_main");
+  var stations_constructed = document.getElementById("stations_constructed");
+  var produced_main = document.getElementById("produced_main");
+  var produced_station_main = document.getElementById("produced_station_main");
+  var rooms_main = document.getElementById("rooms_main");
+  var hospitals_main = document.getElementById("hospitals_main");
+
+
+  var hospitals_list = document.getElementById("hospitals_list");
+  var tubes_mini = document.getElementById("tubes_mini");
+  var consoles_mini = document.getElementById("consoles_mini");
+  var started_consoles_mini = document.getElementById("started_consoles_mini");
+  var rooms_mini_all = document.getElementById("rooms_mini_all");
+  var rooms_mini_normal = document.getElementById("rooms_mini_normal");
+  var rooms_mini_operation = document.getElementById("rooms_mini_operation");
+  var rooms_mini_reamination = document.getElementById("rooms_mini_reamination");
+
+
+  var consoles1 = document.getElementById("1consoles");
+  var consoles3 = document.getElementById("3consoles");
+  var speed_ave_consoles = document.getElementById("speed_ave_consoles");
+  var consoles_today = document.getElementById("consoles_today");
+
+
+  var details_done = document.getElementById("details_done");
+  var details_delivered = document.getElementById("details_delivered");
+
+
+  var w1 = document.getElementById("w1");
+  var w2 = document.getElementById("w2");
+  var w3 = document.getElementById("w3");
+  var w4 = document.getElementById("w4");
+  var w5 = document.getElementById("w5");
+  var w6 = document.getElementById("w6");
+  var w7 = document.getElementById("w7");
+  var w8 = document.getElementById("w8");
+  var w9 = document.getElementById("w9");
+  var w10 = document.getElementById("w10");
+  var w11 = document.getElementById("w11");
+  var w12 = document.getElementById("w12");
+
+  var stations = document.getElementById("stations");
+
+  var data;
+  var list_new = 1;
+
+
+  function makeit(data){
+    console.log("We are connected");
+    
+
+    // region: Основные данные без математики
+    tubes_main.innerHTML = data["Проложено труб"];
+    console_main.innerHTML = data["Произведено консолей"];
+    installed_console_main.innerHTML = data["Установлено консолей"];
+    stations_constructed.innerHTML = data["Построено станций"];
+    produced_main.innerHTML = data["Произведено деталей в общем"];
+    produced_station_main.innerHTML = data["Собрано станций"];
+    rooms_main.innerHTML = data["Готовых палат"];
+    hospitals_main.innerHTML = data["Готовых больниц"];
+
+    w1.innerHTML = data["Количество центральных крышек"]["есть"] + "/" + data["Количество центральных крышек"]["надо"];
+    w2.innerHTML = data["Количество оснований"]["есть"] + "/" + data["Количество оснований"]["надо"];
+    w3.innerHTML = data["Количество боковых оснований"]["есть"] + "/" + data["Количество боковых оснований"]["надо"];
+    w4.innerHTML = data["Количество боковых крышек"]["есть"] + "/" + data["Количество боковых крышек"]["надо"];
+    w5.innerHTML = data["Количество соединительных профилей"]["есть"] + "/" + data["Количество соединительных профилей"]["надо"];
+    w6.innerHTML = data["Количество рельс на складе"]["есть"] + "/" + data["Количество рельс на складе"]["надо"];
+    w7.innerHTML = data["Количество боковых крышек на двойные"]["есть"] + "/" + data["Количество боковых крышек на двойные"]["надо"];
+    w8.innerHTML = data["Количество клапанов AIR"]["есть"] + "/" + data["Количество клапанов AIR"]["надо"];
+    w9.innerHTML = data["Количество клапанов VAC"]["есть"] + "/" + data["Количество клапанов VAC"]["надо"];
+    w10.innerHTML = data["Количество клапанов CO2"]["есть"] + "/" + data["Количество клапанов CO2"]["надо"];
+    w11.innerHTML = data["Количество клапанов O2"]["есть"] + "/" + data["Количество клапанов O2"]["надо"];
+    w12.innerHTML = data["Количество СИЗов"]["есть"] + "/" + data["Количество СИЗов"]["надо"];
+
+    consoles1.innerHTML = data["Произведено консолей на 1 газ"]["есть"] + "/" + data["Произведено консолей на 1 газ"]["надо"];
+    consoles3.innerHTML = data["Произведено консолей на 3 газа"]["есть"] + "/" + data["Произведено консолей на 3 газа"]["надо"];
+    speed_ave_consoles.innerHTML = data["Средняя скорость производства"]["есть"] + "/" + data["Средняя скорость производства"]["надо"];
+    consoles_today.innerHTML = data["Производство за сегодня"]["есть"] + "/" + data["Производство за сегодня"]["надо"];
+
+    details_done.innerHTML = data["Произведено деталей"]["есть"] + "/" + data["Произведено деталей"]["надо"]
+    details_delivered.innerHTML = data["Доставлено деталей"]["есть"] + "/" + data["Доставлено деталей"]["надо"]
+    // endregion
+    if(list_new == 1){
+      create_list();
+      list_new = 0;
+    }
+    
+    hosp_list();
+   
+  }
+
+  function hosp_list(){
+    var hosp_name = hospitals_list.value;
+    console.log(hosp_name);
+    console.log(data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"]);
+    try{
+      tubes_mini.innerHTML = data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"];
+      consoles_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей"]["надо"];
+      started_consoles_mini.innerHTML = data["Объекты"][hosp_name]["Запущено консолей"]["есть"] + "/" + data["Объекты"][hosp_name]["Запущено консолей"]["надо"];
+      rooms_mini_all.innerHTML = data["Объекты"][hosp_name]["Готовых палат в общем"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых палат в общем"]["надо"];
+      rooms_mini_normal.innerHTML = data["Объекты"][hosp_name]["Готовых общих палат"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых общих палат"]["надо"];
+      rooms_mini_operation.innerHTML = data["Объекты"][hosp_name]["Готовых операционных палат"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых операционных палат"]["надо"];
+      rooms_mini_reamination.innerHTML = data["Объекты"][hosp_name]["Готовых палат в реанимации"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых палат в реанимации"]["надо"];
+    }
+    catch{
+      var a = 0;
+    }
+    
+  }
+
+  function create_list(){
+    console.log("create list is started");
+    var list = document.getElementById("hospitals_list");
+    var list2 = document.getElementById("stations");
+    var template = '<option value="NAME">NAME2</option>';
+    var temp2 = '<tr><td>NAME</td><td><i>STATUS</i></td></tr>'
+    var all = "";
+    var stats = "";
+    for (const [key, value] of Object.entries(data["Объекты"])) {
+      all = all + template.replace("NAME", key).replace("NAME2", key);
+      let it = "Не подключен";
+      if(data["Объекты"][key]["Статус"] == "1"){
+        it = "Подключен";
+      }
+      stats = stats + temp2.replace("NAME", key).replace("STATUS", it)
+    }
+    list.innerHTML = all;
+    list2.innerHTML = stats;
+  }
+
+  // Client Side Javascript to receive numbers.
+
+  $("#hospitals_list").on('change', function() {
+      hosp_list();
+  });
+
+  $(document).ready(function(){
+      function runFunction(){
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/test', {'forceNew': true});
+        socket.on('my response', function(msg) {
+          data = msg;
+          makeit(data);
+          socket.disconnect();
+        });
+      };
+      runFunction();
+      var t=setInterval(runFunction,1000);
+  });
 
 </script>
 
