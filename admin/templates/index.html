@@ -39,8 +39,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#hostpital" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
     <a href="#industry" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
     <a href="#delivery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
-    <a href="#warehouse" class="w3-bar-item w3-button w3-padding"><i class="fa fa-shopping-cart fa-fw"></i>  Склады</a>
-    <a href="#stations_menu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a>
+    <!-- <a href="#stations_menu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a> -->
 <br><br>
   </div>
 </nav>
@@ -89,58 +88,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       </div>
     </div>
     <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3  id="stations_constructed">2%</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Еще не построено станций</h4>
-      </div>
-    </div>
-  </div>
-  
-<div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
       <div class="w3-container w3-green w3-padding-16">
         <div class="w3-left"><i class="fa fa-cog w3-xxxlarge"></i></div>
         <div class="w3-right">
           <h3 id="produced_main">10%</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Произведено деталей</h4>
+        <h4>Произведено станций</h4>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-cubes w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3  id="produced_station_main">10%</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Собрано станций</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-pink w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3 id="rooms_main">1%</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Готовых палат</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-purple w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3  id="hospitals_main">0/18</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Готовых больниц</h4>
-      </div>
-    </div>
+
     <br>
     <hr>
     <br>
@@ -163,13 +120,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
       <div class="w3-third">
         <h5>Выбрать больницу</h5>
         <select style="width:100%;" id="hospitals_list">
-          <!-- <option value="Общее">Общее</option>
-          <option value="ГКИБ">ГКИБ</option>
-          <option value="МИГ">МИГ</option>
-          <option value="ЦГКБ">ЦГКБ</option>
-          <option value="ДГКИБ">ДГКИБ</option>
-          <option value="БСМП">БСМП</option>
-          <option value="ЦФ">ЦФ</option> -->
         </select>
       </div>
       <div class="w3-row-padding" style="margin:0 -16px">
@@ -178,38 +128,43 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <table class="w3-table w3-striped w3-white">
           <tr>
             <td><i class="fa fa-arrows-h w3-text-blue w3-large"></i></td>
-            <td>Проложено труб</td>
+            <td>Проложено труб внутрий зданий</td>
             <td><i id="tubes_mini">200/1500</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-gamepad w3-text-red w3-large"></i></td>
-            <td>Установлено консолей</td>
-            <td><i id="consoles_mini">50/200</i></td>
+            <td>Установлено консолей на 1 газ</td>
+            <td><i id="consoles1_mini">50/200</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-tasks w3-text-yellow w3-large"></i></td>
-            <td>Запущено консолей</td>
-            <td><i id="started_consoles_mini">20/200</i></td>
+            <td>Установлено консолей на 3 газ</td>
+            <td><i id="consoles3_mini">20/200</i></td>
           </tr>
           <tr>
             <td><i class="fa fa-inbox w3-text-red w3-large"></i></td>
-            <td>Готовых палат в общем</td>
-            <td><i  id="rooms_mini_all">10/70</i></td>
+            <td>Количество установленных КРБ</td>
+            <td><i  id="krb">10/70</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-group w3-text-blue w3-large"></i></td>
-            <td>Готовых общих палат</td>
-            <td><i id="rooms_mini_normal">10/50</i></td>
+            <td><i class="fa fa-inbox w3-text-blue w3-large"></i></td>
+            <td>Количество установленных РШ</td>
+            <td><i id="rsh">10/50</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-microchip w3-text-red w3-large"></i></td>
-            <td>Готовых операционных палат</td>
-            <td><i id="rooms_mini_operation">10/50</i></td>
+            <td><i class="fa fa-microchip w3-text-yellow w3-large"></i></td>
+            <td>Количество установленных ваакумных станций</td>
+            <td><i id="vaacum">10/50</i></td>
           </tr>
           <tr>
-            <td><i class="fa fa-bed w3-text-green w3-large"></i></td>
-            <td>Готовых палат в реанимации</td>
-            <td><i id="rooms_mini_reamination">10/50</i></td>
+            <td><i class="fa fa-microchip w3-text-black w3-large"></i></td>
+            <td>Количество установленных станций сжатого воздуха</td>
+            <td><i id="zhvozduh">10/50</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-microchip w3-text-blue w3-large"></i></td>
+            <td>Количество установленных кислородных станций</td>
+            <td><i id="oxygen">10/50</i></td>
           </tr>
         </table>
       </div>
@@ -246,43 +201,68 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     
     <div class="w3-quarter">
       <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-inbox w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3 id="speed_ave_consoles">54/100</h3>
+          <h3 id="rsh_prod">54/100</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Средняя скорость производства</h4>
+        <h4>Количество произведенных РШ</h4>
       </div>
     </div>
     
     
     <div class="w3-quarter">
       <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-left"><i class="fa fa-inbox w3-xxxlarge"></i></div>
         <div class="w3-right">
-          <h3 id="consoles_today">62/100</h3>
+          <h3 id="krb_prod">62/100</h3>
         </div>
         <div class="w3-clear"></div>
-        <h4>Производство за сегодня</h4>
+        <h4>Количество произведенных КРБ</h4>
       </div>
     </div>
   </div>
   
+
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-third">
+          <div class="w3-container w3-black w3-padding-16">
+            <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="comp_prod">2530/4800</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Количество произведенных компрессорных станций</h4>
+          </div>
+        </div>
+    <div class="w3-third">
+      <div class="w3-container w3-yellow w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="vac_prod">2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных ваакумных станций</h4>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="oxy_prod">2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных кислородных станций</h4>
+      </div>
+    </div>
+        
+
       
     <hr>
     <br>
-    <!-- <div class="w3-row-padding w3-margin-bottom">
-      <div class="w3-third">
-          <h5>Выбрать продукт</h5>
-          <select style="width:100%;">
-          <option value="1">Консоли на 1 газ</option>
-          </select>
-      </div>
-      <br>
-      
-    </div>
-    <div id="container2" style="height: 500px; min-width: 310px"></div>
-     -->
+    <br>
+    <br>
     <header class="w3-container" style="padding-top:22px" id="delivery">
       <h5><b><i class="fa fa-plane"></i> Доставка с зарубежья</b></h5>
     </header>
@@ -309,90 +289,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               <h4>Доставлено деталей</h4>
             </div>
           </div>
-          
-          <!-- <div class="w3-half">
-            <h5>Вылеты</h5>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td>Рейс первый</td>
-            <td><i>20 июля 12:50</i></td>
-          </tr>
-          <tr>
-            <td>Рейс второй</td>
-            <td><i>20 июля 12:50</i></td>
-          </tr>
-          <tr>
-            <td>Рейс третий</td>
-            <td><i>20 июля 12:50</i></td>
-          </tr>
-        </table>
-          </div> -->
 
 
         </div>
-        
-            
-          <hr>
-          <br>
 
-          <header class="w3-container" style="padding-top:22px" id="warehouse">
-            <h5><b><i class="fa fa-shopping-cart"></i> Склады</b></h5>
-          </header>
-          <div class="w3-full">
-            <h5>Детали</h5>
-        <table class="w3-table w3-striped w3-white">
-          <tr>
-            <td>Количество центральных крышек</td>
-            <td><i id="w1">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество оснований</td>
-            <td><i id="w2">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество боковых оснований</td>
-            <td><i id="w3">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество боковых крышек</td>
-            <td><i id="w4">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество соединительных профилей</td>
-            <td><i id="w5">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество рельс на складе</td>
-            <td><i id="w6">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество боковых крышек на двойные</td>
-            <td><i id="w7">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество клапанов AIR</td>
-            <td><i id="w8">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество клапанов VAC</td>
-            <td><i id="w9">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество клапанов CO2</td>
-            <td><i id="w10">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество клапанов O2</td>
-            <td><i id="w11">120/1400</i></td>
-          </tr>
-          <tr>
-            <td>Количество СИЗов</td>
-            <td><i id="w12">120/800</i></td>
-          </tr>
-        </table>
-          </div>
-
-
+<!-- 
           <header class="w3-container" style="padding-top:22px" id="stations_menu">
             <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
           </header>
@@ -402,10 +303,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               <div class="w3-third">
                 <h5>Станции</h5>
                 <table class="w3-table w3-striped w3-white" id="stations">
-                  <!-- <tr>
-                    <td>Станция 1</td>
-                    <td><i id="s1">Еще не построено</i></td>
-                  </tr> -->
                 </table>
               </div>
               
@@ -415,7 +312,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
               </div>
             </div>
           </div>
-          <hr>
+          <hr> -->
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
@@ -540,45 +437,28 @@ function w3_close() {
   var tubes_main = document.getElementById("tubes_main");
   var console_main = document.getElementById("console_main");
   var installed_console_main = document.getElementById("installed_console_main");
-  var stations_constructed = document.getElementById("stations_constructed");
   var produced_main = document.getElementById("produced_main");
-  var produced_station_main = document.getElementById("produced_station_main");
-  var rooms_main = document.getElementById("rooms_main");
-  var hospitals_main = document.getElementById("hospitals_main");
-
 
   var hospitals_list = document.getElementById("hospitals_list");
   var tubes_mini = document.getElementById("tubes_mini");
-  var consoles_mini = document.getElementById("consoles_mini");
-  var started_consoles_mini = document.getElementById("started_consoles_mini");
-  var rooms_mini_all = document.getElementById("rooms_mini_all");
-  var rooms_mini_normal = document.getElementById("rooms_mini_normal");
-  var rooms_mini_operation = document.getElementById("rooms_mini_operation");
-  var rooms_mini_reamination = document.getElementById("rooms_mini_reamination");
-
+  var consoles1_mini = document.getElementById("consoles1_mini");
+  var consoles3_mini = document.getElementById("consoles3_mini");
+  var krb = document.getElementById("krb");
+  var rsh = document.getElementById("rsh");
+  var vaacum = document.getElementById("vaacum");
+  var zhvozduh = document.getElementById("zhvozduh");
+  var oxygen = document.getElementById("oxygen");
 
   var consoles1 = document.getElementById("1consoles");
   var consoles3 = document.getElementById("3consoles");
-  var speed_ave_consoles = document.getElementById("speed_ave_consoles");
-  var consoles_today = document.getElementById("consoles_today");
-
+  var rsh_prod = document.getElementById("rsh_prod");
+  var krb_prod = document.getElementById("krb_prod");
+  var comp_prod = document.getElementById("comp_prod");
+  var vac_prod = document.getElementById("vac_prod");
+  var oxy_prod = document.getElementById("oxy_prod");
 
   var details_done = document.getElementById("details_done");
   var details_delivered = document.getElementById("details_delivered");
-
-
-  var w1 = document.getElementById("w1");
-  var w2 = document.getElementById("w2");
-  var w3 = document.getElementById("w3");
-  var w4 = document.getElementById("w4");
-  var w5 = document.getElementById("w5");
-  var w6 = document.getElementById("w6");
-  var w7 = document.getElementById("w7");
-  var w8 = document.getElementById("w8");
-  var w9 = document.getElementById("w9");
-  var w10 = document.getElementById("w10");
-  var w11 = document.getElementById("w11");
-  var w12 = document.getElementById("w12");
 
   var stations = document.getElementById("stations");
 
@@ -594,29 +474,15 @@ function w3_close() {
     tubes_main.innerHTML = data["Проложено труб"];
     console_main.innerHTML = data["Произведено консолей"];
     installed_console_main.innerHTML = data["Установлено консолей"];
-    stations_constructed.innerHTML = data["Построено станций"];
     produced_main.innerHTML = data["Произведено деталей в общем"];
-    produced_station_main.innerHTML = data["Собрано станций"];
-    rooms_main.innerHTML = data["Готовых палат"];
-    hospitals_main.innerHTML = data["Готовых больниц"];
 
-    w1.innerHTML = data["Количество центральных крышек"]["есть"] + "/" + data["Количество центральных крышек"]["надо"];
-    w2.innerHTML = data["Количество оснований"]["есть"] + "/" + data["Количество оснований"]["надо"];
-    w3.innerHTML = data["Количество боковых оснований"]["есть"] + "/" + data["Количество боковых оснований"]["надо"];
-    w4.innerHTML = data["Количество боковых крышек"]["есть"] + "/" + data["Количество боковых крышек"]["надо"];
-    w5.innerHTML = data["Количество соединительных профилей"]["есть"] + "/" + data["Количество соединительных профилей"]["надо"];
-    w6.innerHTML = data["Количество рельс на складе"]["есть"] + "/" + data["Количество рельс на складе"]["надо"];
-    w7.innerHTML = data["Количество боковых крышек на двойные"]["есть"] + "/" + data["Количество боковых крышек на двойные"]["надо"];
-    w8.innerHTML = data["Количество клапанов AIR"]["есть"] + "/" + data["Количество клапанов AIR"]["надо"];
-    w9.innerHTML = data["Количество клапанов VAC"]["есть"] + "/" + data["Количество клапанов VAC"]["надо"];
-    w10.innerHTML = data["Количество клапанов CO2"]["есть"] + "/" + data["Количество клапанов CO2"]["надо"];
-    w11.innerHTML = data["Количество клапанов O2"]["есть"] + "/" + data["Количество клапанов O2"]["надо"];
-    w12.innerHTML = data["Количество СИЗов"]["есть"] + "/" + data["Количество СИЗов"]["надо"];
-
-    consoles1.innerHTML = data["Произведено консолей на 1 газ"]["есть"] + "/" + data["Произведено консолей на 1 газ"]["надо"];
-    consoles3.innerHTML = data["Произведено консолей на 3 газа"]["есть"] + "/" + data["Произведено консолей на 3 газа"]["надо"];
-    speed_ave_consoles.innerHTML = data["Средняя скорость производства"]["есть"] + "/" + data["Средняя скорость производства"]["надо"];
-    consoles_today.innerHTML = data["Производство за сегодня"]["есть"] + "/" + data["Производство за сегодня"]["надо"];
+    consoles1.innerHTML = data["консоль1"]["есть"] + "/" + data["консоль1"]["надо"];
+    consoles3.innerHTML = data["консоль3"]["есть"] + "/" + data["консоль3"]["надо"];
+    rsh_prod.innerHTML = data["рш"]["есть"] + "/" + data["рш"]["надо"];
+    krb_prod.innerHTML = data["крб"]["есть"] + "/" + data["крб"]["надо"];
+    comp_prod.innerHTML = data["комп"]["есть"] + "/" + data["комп"]["надо"];
+    vac_prod.innerHTML = data["вак"]["есть"] + "/" + data["вак"]["надо"];
+    oxy_prod.innerHTML = data["кис"]["есть"] + "/" + data["кис"]["надо"];
 
     details_done.innerHTML = data["Произведено деталей"]["есть"] + "/" + data["Произведено деталей"]["надо"]
     details_delivered.innerHTML = data["Доставлено деталей"]["есть"] + "/" + data["Доставлено деталей"]["надо"]
@@ -636,13 +502,14 @@ function w3_close() {
     console.log(data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"]);
     try{
       tubes_mini.innerHTML = data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"];
-      consoles_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей"]["надо"];
-      started_consoles_mini.innerHTML = data["Объекты"][hosp_name]["Запущено консолей"]["есть"] + "/" + data["Объекты"][hosp_name]["Запущено консолей"]["надо"];
-      rooms_mini_all.innerHTML = data["Объекты"][hosp_name]["Готовых палат в общем"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых палат в общем"]["надо"];
-      rooms_mini_normal.innerHTML = data["Объекты"][hosp_name]["Готовых общих палат"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых общих палат"]["надо"];
-      rooms_mini_operation.innerHTML = data["Объекты"][hosp_name]["Готовых операционных палат"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых операционных палат"]["надо"];
-      rooms_mini_reamination.innerHTML = data["Объекты"][hosp_name]["Готовых палат в реанимации"]["есть"] + "/" + data["Объекты"][hosp_name]["Готовых палат в реанимации"]["надо"];
-    }
+      consoles1_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей 1"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей 1"]["надо"];
+      consoles3_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей 3"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей 3"]["надо"];
+      krb.innerHTML = data["Объекты"][hosp_name]["КРБ"]["есть"] + "/" + data["Объекты"][hosp_name]["КРБ"]["надо"];
+      rsh.innerHTML = data["Объекты"][hosp_name]["РШ"]["есть"] + "/" + data["Объекты"][hosp_name]["РШ"]["надо"];
+      vaacum.innerHTML = data["Объекты"][hosp_name]["Ваакум"]["есть"] + "/" + data["Объекты"][hosp_name]["Ваакум"]["надо"];
+      zhvozduh.innerHTML = data["Объекты"][hosp_name]["Воздух"]["есть"] + "/" + data["Объекты"][hosp_name]["Воздух"]["надо"];
+      oxygen.innerHTML = data["Объекты"][hosp_name]["Кислород"]["есть"] + "/" + data["Объекты"][hosp_name]["Кислород"]["надо"];
+      }
     catch{
       var a = 0;
     }
@@ -652,21 +519,12 @@ function w3_close() {
   function create_list(){
     console.log("create list is started");
     var list = document.getElementById("hospitals_list");
-    var list2 = document.getElementById("stations");
     var template = '<option value="NAME">NAME2</option>';
-    var temp2 = '<tr><td>NAME</td><td><i>STATUS</i></td></tr>'
     var all = "";
-    var stats = "";
     for (const [key, value] of Object.entries(data["Объекты"])) {
       all = all + template.replace("NAME", key).replace("NAME2", key);
-      let it = "Не подключен";
-      if(data["Объекты"][key]["Статус"] == "1"){
-        it = "Подключен";
-      }
-      stats = stats + temp2.replace("NAME", key).replace("STATUS", it)
     }
     list.innerHTML = all;
-    list2.innerHTML = stats;
   }
 
   // Client Side Javascript to receive numbers.

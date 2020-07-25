@@ -36,21 +36,20 @@ group_id = -1001438155243
 def one_time():
     current_time = datetime.datetime.strftime(datetime.datetime.utcnow(),"%H")
     logging.debug('Current time is: ' + current_time)
-    if current_time == "10":
+    if current_time == "01":
         logging.debug('Sending scheduled messages')
         try:
             for brigadir in users.find({"position": "Бригадир"}):
                 cid = brigadir["user"]
                 markup = types.ForceReply(selective=False)
-                bot.send_message(cid, "Соңғы 24 сағат ішінде ғимараттың ішінде салынған трубалардын  саны?")
-                bot.send_message(cid, "Количество проложенных труб внутри здания за последние 24 часа?", reply_markup=markup)
+                bot.send_message(cid, "Количество проложенных труб за последние 24 часа?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Нет бригадиров")
     
         try:
             cid = users.find_one({"position": "Снабжение"})["user"]
             markup = types.ForceReply(selective=False)
-            bot.send_message(cid, "Какое количество произведенных станций на 20 м3 в КНР сейчас?", reply_markup=markup)
+            bot.send_message(cid, "Какое количество произведенных станций в КНР сейчас?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Анвар не зарегался")
 
@@ -60,13 +59,6 @@ def one_time():
             bot.send_message(cid, "Количество произведенных консолей на 1 газ за последние 24 часа?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Игорь Е. не зарегался")
-
-        try:
-            cid = users.find_one({"position": "Склад"})["user"]
-            markup = types.ForceReply(selective=False)
-            bot.send_message(cid, "Какое количество центральных крышек на складе сейчас?", reply_markup=markup)
-        except:
-            bot.send_message(group_id, "Оксана не зарегалась")
         
 
 if __name__ == "__main__":
