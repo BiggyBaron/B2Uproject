@@ -64,6 +64,8 @@ def test_connect():
 
     senddata = data_now.find_one()
 
+    senddata["ObjectId"] = 0
+
     emit('my response', senddata)
    
 
