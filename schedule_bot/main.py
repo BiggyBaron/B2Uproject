@@ -56,7 +56,7 @@ def one_time():
         try:
             cid = users.find_one({"position": "Производство"})["user"]
             markup = types.ForceReply(selective=False)
-            bot.send_message(cid, "Количество произведенных консолей на 1 газ в общем??", reply_markup=markup)
+            bot.send_message(cid, "Количество произведенных консолей на 1 газ в общем?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Игорь Е. не зарегался")
         
