@@ -216,9 +216,9 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "Количество произведенных ваакумных станций в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных вакуумных станций в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'Количество произведенных ваакумных станций в общем?':
+        if message.reply_to_message.text == 'Количество произведенных вакуумных станций в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
