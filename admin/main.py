@@ -56,18 +56,16 @@ def index():
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
-
-    snabjenies = users.find_one({"position": "Снабжение"})
-    sklads = users.find_one({"position": "Склад"})
-    productions = users.find_one({"position": "Производство"})
-    brigadirs = users.find_one({"position": "Бригадир"})
-
     senddata = data_now.find_one()
-
     senddata["_id"] = 0
-
     emit('my response', senddata)
-   
+
+
+@app.route("/enter", methods=["GET", "POST"])
+def enter():
+    return render_template(
+        "enter.html", **locals())
+
 
 # Main flask app
 if __name__ == "__main__":
