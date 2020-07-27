@@ -164,504 +164,80 @@ def text_handler(message):
         # region: Checking data
 
         # region: production
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных консолей на 1 газ в общем?':
+        if message.reply_to_message.text == 'Количество произведенных консолей на 1 газ в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p1"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных консолей на 3 газа в общем?':
+            bot.send_message(message.chat.id, "Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
+        if message.reply_to_message.text == 'Количество произведенных консолей на 3 газа в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p2"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных РШ в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных РШ в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных РШ в общем?':
+        if message.reply_to_message.text == 'Количество произведенных РШ в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p3"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных КРБ в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных КРБ в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных КРБ в общем?':
+        if message.reply_to_message.text == 'Количество произведенных КРБ в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p4"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных компрессорных станций в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных компрессорных станций в общем?':
+        if message.reply_to_message.text == 'Количество произведенных компрессорных станций в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p5"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных ваакумных станций в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных ваакумных станций в общем?':
+        if message.reply_to_message.text == 'Количество произведенных ваакумных станций в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p6"
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ГКИБ: Количество произведенных кислородных станций в общем?", reply_markup=markup)
+            bot.send_message(message.chat.id, "Количество произведенных кислородных станций в общем?", reply_markup=markup)
 
-        if message.reply_to_message.text == 'ГКИБ: Количество произведенных кислородных станций в общем?':
+        if message.reply_to_message.text == 'Количество произведенных кислородных станций в общем?':
             msg = {
             "from": str(message.chat.id),
             "time": message.date,
             "data": message.text,
-            "object": "ГКИБ",
             "type": "p7"
             }
             dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество проложенных труб в общем?", reply_markup=markup)
-        
-        # МИГ
-        if message.reply_to_message.text == 'МИГ: Количество произведенных консолей на 1 газ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p1"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'МИГ: Количество произведенных консолей на 3 газа в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p2"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных РШ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'МИГ: Количество произведенных РШ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p3"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных КРБ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'МИГ: Количество произведенных КРБ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p4"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'МИГ: Количество произведенных компрессорных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p5"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'МИГ: Количество произведенных ваакумных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p6"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "МИГ: Количество произведенных кислородных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'МИГ: Количество произведенных кислородных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "МИГ",
-            "type": "p7"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество проложенных труб в общем?", reply_markup=markup)
-        
-        # ЦГКБ
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных консолей на 1 газ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p1"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных консолей на 3 газа в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p2"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных РШ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных РШ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p3"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных КРБ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных КРБ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p4"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных компрессорных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p5"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных ваакумных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p6"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦГКБ: Количество произведенных кислородных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ЦГКБ: Количество произведенных кислородных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ЦГКБ",
-            "type": "p7"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество проложенных труб в общем?", reply_markup=markup)
-        # БСМП
-        if message.reply_to_message.text == 'БСМП: Количество произведенных консолей на 1 газ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p1"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'БСМП: Количество произведенных консолей на 3 газа в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p2"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных РШ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'БСМП: Количество произведенных РШ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p3"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных КРБ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'БСМП: Количество произведенных КРБ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p4"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'БСМП: Количество произведенных компрессорных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p5"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'БСМП: Количество произведенных ваакумных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p6"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "БСМП: Количество произведенных кислородных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'БСМП: Количество произведенных кислородных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "БСМП",
-            "type": "p7"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество проложенных труб в общем?", reply_markup=markup)
-        # ДГКИБ
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных консолей на 1 газ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p1"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных консолей на 3 газа в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p2"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных РШ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных РШ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p3"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных КРБ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных КРБ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p4"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных компрессорных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p5"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных ваакумных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p6"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных кислородных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных кислородных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p7"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ЦФ: Количество проложенных труб в общем?", reply_markup=markup)
-        # ЦФ
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных консолей на 1 газ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p1"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных консолей на 3 газа в общем?", reply_markup=markup)
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных консолей на 3 газа в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p2"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных РШ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных РШ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p3"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных КРБ в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных КРБ в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p4"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных компрессорных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных компрессорных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p5"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных ваакумных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных ваакумных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p6"
-            }
-            dash.insert_one(msg)
-            markup = types.ForceReply(selective=False)
-            bot.send_message(message.chat.id, "ДГКИБ: Количество произведенных кислородных станций в общем?", reply_markup=markup)
-
-        if message.reply_to_message.text == 'ДГКИБ: Количество произведенных кислородных станций в общем?':
-            msg = {
-            "from": str(message.chat.id),
-            "time": message.date,
-            "data": message.text,
-            "object": "ДГКИБ",
-            "type": "p7"
-            }
-            dash.insert_one(msg)
-            bot.send_message(message.chat.id, "Спасибо!")
+            bot.send_message(message.chat.id, "Спасибо большое!")
 
         # endregion
 
