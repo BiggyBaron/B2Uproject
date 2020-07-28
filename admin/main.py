@@ -78,9 +78,9 @@ def calculate():
 
     obj_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
 
-    for obj in objects:
-        obj_data[obj]["tubes"] = dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"]
-        logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
+    # for obj in objects:
+    #     obj_data[obj]["tubes"] = dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"]
+    #     logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
 
         # obj_data["total"]["tubes"] = obj_data["total"]["tubes"] + int(obj_data[obj]["tubes"])
 
