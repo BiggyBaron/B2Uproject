@@ -78,34 +78,33 @@ def calculate():
 
     obj_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
 
-    logging.warning(dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"])
 
-    # for obj in objects:
-    #     obj_data[obj]["tubes"] = dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"]
-    #     logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
+    for obj in objects:
+        obj_data[obj]["tubes"] = dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"]
+        logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
 
-        # obj_data["total"]["tubes"] = obj_data["total"]["tubes"] + int(obj_data[obj]["tubes"])
+        obj_data["total"]["tubes"] = obj_data["total"]["tubes"] + int(obj_data[obj]["tubes"])
 
-        # obj_data[obj]["krb"] = dash.find_one({"type": "m2", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["krb"] = obj_data["total"]["krb"] + int(obj_data[obj]["krb"])
+        obj_data[obj]["krb"] = dash.find_one({"type": "m2", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["krb"] = obj_data["total"]["krb"] + int(obj_data[obj]["krb"])
 
-        # obj_data[obj]["rsh"] = dash.find_one({"type": "m3", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["rsh"] = obj_data["total"]["rsh"] + int(obj_data[obj]["rsh"])
+        obj_data[obj]["rsh"] = dash.find_one({"type": "m3", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["rsh"] = obj_data["total"]["rsh"] + int(obj_data[obj]["rsh"])
 
-        # obj_data[obj]["cons1"] = dash.find_one({"type": "m4", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["cons1"] = obj_data["total"]["cons1"] + int(obj_data[obj]["cons1"])
+        obj_data[obj]["cons1"] = dash.find_one({"type": "m4", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["cons1"] = obj_data["total"]["cons1"] + int(obj_data[obj]["cons1"])
 
-        # obj_data[obj]["cons3"] = dash.find_one({"type": "m5", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["cons3"] = obj_data["total"]["cons3"] + int(obj_data[obj]["cons3"])
+        obj_data[obj]["cons3"] = dash.find_one({"type": "m5", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["cons3"] = obj_data["total"]["cons3"] + int(obj_data[obj]["cons3"])
         
-        # obj_data[obj]["vac"] = dash.find_one({"type": "m6", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["vac"] = obj_data["total"]["vac"] + int(obj_data[obj]["vac"])
+        obj_data[obj]["vac"] = dash.find_one({"type": "m6", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["vac"] = obj_data["total"]["vac"] + int(obj_data[obj]["vac"])
 
-        # obj_data[obj]["comp"] = dash.find_one({"type": "m7", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["comp"] = obj_data["total"]["comp"] + int(obj_data[obj]["comp"])
+        obj_data[obj]["comp"] = dash.find_one({"type": "m7", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["comp"] = obj_data["total"]["comp"] + int(obj_data[obj]["comp"])
 
-        # obj_data[obj]["oxy"] = dash.find_one({"type": "m8", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        # obj_data["total"]["oxy"] = obj_data["total"]["oxy"] + int(obj_data[obj]["oxy"])
+        obj_data[obj]["oxy"] = dash.find_one({"type": "m8", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+        obj_data["total"]["oxy"] = obj_data["total"]["oxy"] + int(obj_data[obj]["oxy"])
 
 
 
@@ -113,7 +112,7 @@ def calculate():
 # Main page
 @app.route("/", methods=["GET", "POST"])
 def index():
-    calculate()
+    # calculate()
     return render_template(
         "index.html", **locals())
 
