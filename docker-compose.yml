@@ -54,6 +54,8 @@ services:
   database:
     restart: always
     image: mongo:3.0.2
+    volumes:
+      - db-data:/data/db
     
   mongo-express:
     restart: always
