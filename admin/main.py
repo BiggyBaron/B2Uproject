@@ -49,17 +49,17 @@ needs = db['needs']
 data_now = db['data_now']
 sklad = db["sklad"]
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.WARNING)
 
 
 def calculate():
 
     objects = dash.distinct("object")
 
-    logging.debug('Objects are: ' + str(objects))
+    logging.warning('Objects are: ' + str(objects))
 
     types = dash.distinct("type")
-    logging.debug('Types are: ' + str(types))
+    logging.warning('Types are: ' + str(types))
 
     # report = dash.find_one(
     #     {'type': "a1"},
