@@ -36,13 +36,12 @@ group_id = -1001438155243
 def one_time():
     current_time = datetime.datetime.strftime(datetime.datetime.utcnow(),"%H")
     logging.debug('Current time is: ' + current_time)
-    if current_time == "09":
+    if current_time == "04":
         logging.debug('Sending scheduled messages')
         try:
-            for brigadir in users.find({"position": "Айдос"}):
-                cid = brigadir["user"]
-                markup = types.ForceReply(selective=False)
-                bot.send_message(cid, "ГКИБ: Количество проложенных труб в общем?", reply_markup=markup)
+            cid = users.find_one({"position": "Айдос"})["user"]
+            markup = types.ForceReply(selective=False)
+            bot.send_message(cid, "ГКИБ: Количество проложенных труб в общем?", reply_markup=markup)
         except:
             bot.send_message(group_id, "Айдос не зарегался")
     
