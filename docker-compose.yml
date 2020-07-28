@@ -51,7 +51,7 @@ services:
 
   database:
     restart: always
-    command: rm /data/db/mongod.lock
+    # command: rm /data/db/mongod.lock
     image: mongo:3.0.2
     
   mongo-express:
