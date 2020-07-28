@@ -82,7 +82,7 @@ def calculate():
     for obj in objects:
         obj_data[obj] = {}
         obj_data[obj]["tubes"] = dash.find_one({"type": "m1", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["object"]
-        logging.warning("Object is: " + str(obj_data[obj]["tubes"]["data"]))
+        logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
 
         obj_data["total"]["tubes"] = obj_data["total"]["tubes"] + int(obj_data[obj]["tubes"]["data"])
 
@@ -113,7 +113,7 @@ def calculate():
 # Main page
 @app.route("/", methods=["GET", "POST"])
 def index():
-    calculate()
+    # calculate()
     return render_template(
         "index.html", **locals())
 
