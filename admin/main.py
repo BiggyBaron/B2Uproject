@@ -80,6 +80,7 @@ def calculate():
 
 
     for obj in objects:
+        obj_data[obj] = {}
         obj_data[obj]["tubes"] = dash.find_one({"type": "m1"}, sort=[( '_id', pymongo.DESCENDING )])["object"]
         logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
 
