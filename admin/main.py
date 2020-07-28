@@ -112,7 +112,7 @@ def calculate():
 # Main page
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # calculate()
+    calculate()
     return render_template(
         "index.html", **locals())
 
