@@ -49,6 +49,8 @@ needs = db['needs']
 data_now = db['data_now']
 sklad = db["sklad"]
 
+logging.basicConfig(level=logging.DEBUG)
+
 
 def calculate():
 
