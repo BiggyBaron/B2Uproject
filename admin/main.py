@@ -23,9 +23,11 @@ import datetime
 import socket
 import json
 from pymongo import MongoClient
+import pymongo
 import requests
 from requests import Request, Session
 from threading import Lock
+import logging
 
 
 async_mode = None
@@ -47,9 +49,28 @@ needs = db['needs']
 data_now = db['data_now']
 sklad = db["sklad"]
 
+
+def calculate():
+
+    objects = dash.distinct("object")
+
+    logging.debug('Objects are: ' + str(objects))
+
+    types = dash.distinct("type")
+    logging.debug('Types are: ' + str(types))
+
+    # report = dash.find_one(
+    #     {'type': "a1"},
+    #     sort=[( '_id', pymongo.DESCENDING )]
+    # )
+
+
+
+
 # Main page
 @app.route("/", methods=["GET", "POST"])
 def index():
+    calculate()
     return render_template(
         "index.html", **locals())
 
