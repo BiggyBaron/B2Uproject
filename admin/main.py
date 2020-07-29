@@ -225,7 +225,7 @@ def calculate():
 # Main page
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # calculate()
+    calculate()
     return render_template(
         "index.html", **locals())
 
@@ -240,6 +240,7 @@ def index2():
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
+    calculate()
     senddata = data_now_db.find_one(sort=[( '_id', pymongo.DESCENDING )])
     senddata["_id"] = 0
     emit('my response', senddata)
