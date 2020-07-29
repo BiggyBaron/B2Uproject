@@ -102,8 +102,8 @@ def calculate():
 
         obj_data[obj]["cons3"] = dash.find_one({"type": "m5", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["cons3"] = obj_data["total"]["cons3"] + int(obj_data[obj]["cons3"])
-        needed_data[obj]["cons5"] = needs.find_one({"object": obj})["m5"]
-        needed_data["total"]["cons5"] = needed_data["total"]["cons3"] + needs.find_one({"object": obj})["m5"]
+        needed_data[obj]["cons3"] = needs.find_one({"object": obj})["m5"]
+        needed_data["total"]["cons3"] = needed_data["total"]["cons3"] + needs.find_one({"object": obj})["m5"]
         
         obj_data[obj]["vac"] = dash.find_one({"type": "m6", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["vac"] = obj_data["total"]["vac"] + int(obj_data[obj]["vac"])
