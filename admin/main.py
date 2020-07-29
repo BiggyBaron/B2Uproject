@@ -139,11 +139,11 @@ def calculate():
     data_now["Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_oxy}
     data_now["Доставлено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_oxy}
 
-    data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_vac}
-    data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_vac}
+    data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["vac"], "есть": prod_vac}
+    data_now["vac_Доставлено деталей"] = {"надо": needed_data["total"]["vac"], "есть": delv_vac}
     
-    data_now["comp_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_comp}
-    data_now["comp_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_comp}
+    data_now["comp_Произведено деталей"] = {"надо": needed_data["total"]["comp"], "есть": prod_comp}
+    data_now["comp_Доставлено деталей"] = {"надо": needed_data["total"]["comp"], "есть": delv_comp}
 
     data_now["Объекты"] = {"Общее": {
                 "Проложено труб": {
