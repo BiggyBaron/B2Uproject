@@ -120,7 +120,7 @@ def index():
 
 # Main page
 @app.route("/test/", methods=["GET", "POST"])
-def index():
+def index2():
     calculate()
     return render_template(
         "index.html", **locals())
