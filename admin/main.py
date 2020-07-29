@@ -217,7 +217,7 @@ def calculate():
             }
         }
     
-    data_now["date"] = datetime.datetime.now()
+    data_now["date"] = datetime.datetime.now().strftime("%d.%m")
 
     data_now_db.insert_one(data_now)
 
