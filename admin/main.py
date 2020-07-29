@@ -46,7 +46,7 @@ problems = db['problems']
 msgs = db['messages']
 dash = db['dash']
 needs = db['needs']
-data_now = db['data_now']
+data_now_db = db['data_now']
 sklad = db["sklad"]
 
 logging.basicConfig(level=logging.WARNING)
@@ -71,6 +71,7 @@ def calculate():
     delv_vac = dash.find_one({"type": "a4"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     prod_comp = dash.find_one({"type": "a5"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     delv_comp = dash.find_one({"type": "a6"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+    sum_station_prod = float(prod_oxy) + float(prod_vac) + float(prod_comp)
 
     obj_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
     needed_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
@@ -119,9 +120,106 @@ def calculate():
         needed_data[obj]["oxy"] = needs.find_one({"object": obj})["m8"]
         needed_data["total"]["oxy"] = needed_data["total"]["oxy"] + needs.find_one({"object": obj})["m8"]
 
-    logging.warning(needed_data)
+    needed_total_station = float(needed_data["total"]["oxy"]) + float(needed_data["total"]["comp"]) + float(needed_data["total"]["vac"])
+    data_now = {}
 
+    data_now["Проложено труб"] = str(round(100/float(needed_data["total"]["tubes"])*float(obj_data["total"]["tubes"]), 1)) + "%"
+    data_now["Произведено консолей"] = str( round( 100/( float(needed_data["total"]["cons1"]) + float(needed_data["total"]["cons3"])) * ( float(consoles1) + float(consoles3)) , 1 ) ) + "%"
+    data_now["Установлено консолей"] = str( round( 100/( float(needed_data["total"]["cons1"]) + float(needed_data["total"]["cons3"])) * ( float(obj_data["total"]["cons1"]) + float(obj_data["total"]["cons3"])) , 1 ) ) + "%"
+    data_now["Произведено деталей в общем"] = str( round( 100/needed_total_station*sum_station_prod , 1) ) + "%"
+    
+    data_now["консоль1"] = {"надо": needed_data["total"]["cons1"], "есть": consoles1}
+    data_now["консоль3"] = {"надо": needed_data["total"]["cons3"], "есть": consoles3}
+    data_now["крб"] = {"надо": needed_data["total"]["krb"], "есть": krb}
+    data_now["рш"] = {"надо": needed_data["total"]["rsh"], "есть": rsh}
+    data_now["комп"] = {"надо": needed_data["total"]["comp"], "есть": comp_station}
+    data_now["вак"] = {"надо": needed_data["total"]["vac"], "есть": vac_station}
+    data_now["кис"] = {"надо": needed_data["total"]["oxy"], "есть": oxy_station}
+    
+    data_now["Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_oxy}
+    data_now["Доставлено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_oxy}
 
+    data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_vac}
+    data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_vac}
+    
+    data_now["comp_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_comp}
+    data_now["comp_Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_comp}
+
+    data_now["Объекты"] = {"Общее": {
+                "Проложено труб": {
+                    "надо": needed_data["total"]["tubes"],
+                    "есть": obj_data["total"]["tubes"]
+                },
+                "Установлено консолей 1": {
+                    "надо": needed_data["total"]["cons1"],
+                    "есть": obj_data["total"]["cons1"]
+                },
+                "Установлено консолей 3": {
+                    "надо": needed_data["total"]["cons3"],
+                    "есть": obj_data["total"]["cons3"]
+                },
+                "КРБ": {
+                    "надо": needed_data["total"]["krb"],
+                    "есть": obj_data["total"]["krb"]
+                },
+                "РШ": {
+                    "надо": needed_data["total"]["rsh"],
+                    "есть": obj_data["total"]["rsh"]
+                },
+                "Ваакум": {
+                    "надо": needed_data["total"]["vac"],
+                    "есть": obj_data["total"]["vac"]
+                },
+                "Воздух": {
+                    "надо": needed_data["total"]["comp"],
+                    "есть": obj_data["total"]["comp"]
+                },
+                "Кислород": {
+                    "надо": needed_data["total"]["oxy"],
+                    "есть": obj_data["total"]["oxy"]
+                }
+            }
+        }
+    
+    for obj in objects:
+        data_now["Объекты"][obj] = {
+            "Проложено труб": {
+                "надо": needed_data[obj]["tubes"],
+                "есть": obj_data[obj]["tubes"]
+            },
+            "Установлено консолей 1": {
+                "надо": needed_data[obj]["cons1"],
+                "есть": obj_data[obj]["cons1"]
+            },
+            "Установлено консолей 3": {
+                "надо": needed_data[obj]["cons3"],
+                "есть": obj_data[obj]["cons3"]
+            },
+            "КРБ": {
+                "надо": needed_data[obj]["krb"],
+                "есть": obj_data[obj]["krb"]
+            },
+            "РШ": {
+                "надо": needed_data[obj]["rsh"],
+                "есть": obj_data[obj]["rsh"]
+            },
+            "Ваакум": {
+                "надо": needed_data[obj]["vac"],
+                "есть": obj_data[obj]["vac"]
+            },
+            "Воздух": {
+                "надо": needed_data[obj]["comp"],
+                "есть": obj_data[obj]["comp"]
+            },
+            "Кислород": {
+                "надо": needed_data[obj]["oxy"],
+                "есть": obj_data[obj]["oxy"]
+            }
+        }
+    
+    data_now["date"] = datetime.datetime.now()
+
+    data_now_db.insert_one(data_now)
 
 
 # Main page
@@ -142,7 +240,7 @@ def index2():
 
 @socketio.on('connect', namespace='/test')
 def test_connect():
-    senddata = data_now.find_one()
+    senddata = data_now_db.find_one(sort=[( '_id', pymongo.DESCENDING )])
     senddata["_id"] = 0
     emit('my response', senddata)
 
