@@ -118,6 +118,14 @@ def index():
         "index.html", **locals())
 
 
+# Main page
+@app.route("/test/", methods=["GET", "POST"])
+def index():
+    calculate()
+    return render_template(
+        "index.html", **locals())
+
+
 @socketio.on('connect', namespace='/test')
 def test_connect():
     senddata = data_now.find_one()
