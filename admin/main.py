@@ -55,11 +55,7 @@ logging.basicConfig(level=logging.WARNING)
 def calculate():
 
     objects = dash.distinct("object")
-
-    logging.warning('Objects are: ' + str(objects))
-
     types = dash.distinct("type")
-    logging.warning('Types are: ' + str(types))
 
     consoles1 = dash.find_one({"type": "p1"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     consoles3 = dash.find_one({"type": "p2"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
@@ -77,38 +73,53 @@ def calculate():
     delv_comp = dash.find_one({"type": "a6"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
 
     obj_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
-
+    needed_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
 
     for obj in objects:
         obj_data[obj] = {}
+        needed_data[obj] = {}
 
         obj_data[obj]["tubes"] = dash.find_one({"type": "m1", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
-        logging.warning("Object is: " + str(obj_data[obj]["tubes"]))
-
         obj_data["total"]["tubes"] = obj_data["total"]["tubes"] + int(obj_data[obj]["tubes"])
+        needed_data[obj]["tubes"] = needs.find_one({"object": obj})["m1"]
+        needed_data["total"]["tubes"] = needed_data["total"]["tubes"] + needs.find_one({"object": obj})["m1"]
 
         obj_data[obj]["krb"] = dash.find_one({"type": "m2", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["krb"] = obj_data["total"]["krb"] + int(obj_data[obj]["krb"])
+        needed_data[obj]["krb"] = needs.find_one({"object": obj})["m2"]
+        needed_data["total"]["krb"] = needed_data["total"]["krb"] + needs.find_one({"object": obj})["m2"]
 
         obj_data[obj]["rsh"] = dash.find_one({"type": "m3", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["rsh"] = obj_data["total"]["rsh"] + int(obj_data[obj]["rsh"])
+        needed_data[obj]["rsh"] = needs.find_one({"object": obj})["m3"]
+        needed_data["total"]["rsh"] = needed_data["total"]["rsh"] + needs.find_one({"object": obj})["m3"]
 
         obj_data[obj]["cons1"] = dash.find_one({"type": "m4", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["cons1"] = obj_data["total"]["cons1"] + int(obj_data[obj]["cons1"])
+        needed_data[obj]["cons1"] = needs.find_one({"object": obj})["m4"]
+        needed_data["total"]["cons1"] = needed_data["total"]["cons1"] + needs.find_one({"object": obj})["m4"]
 
         obj_data[obj]["cons3"] = dash.find_one({"type": "m5", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["cons3"] = obj_data["total"]["cons3"] + int(obj_data[obj]["cons3"])
+        needed_data[obj]["cons5"] = needs.find_one({"object": obj})["m5"]
+        needed_data["total"]["cons5"] = needed_data["total"]["cons3"] + needs.find_one({"object": obj})["m5"]
         
         obj_data[obj]["vac"] = dash.find_one({"type": "m6", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["vac"] = obj_data["total"]["vac"] + int(obj_data[obj]["vac"])
+        needed_data[obj]["vac"] = needs.find_one({"object": obj})["m6"]
+        needed_data["total"]["vac"] = needed_data["total"]["vac"] + needs.find_one({"object": obj})["m6"]
 
         obj_data[obj]["comp"] = dash.find_one({"type": "m7", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["comp"] = obj_data["total"]["comp"] + int(obj_data[obj]["comp"])
+        needed_data[obj]["comp"] = needs.find_one({"object": obj})["m7"]
+        needed_data["total"]["comp"] = needed_data["total"]["comp"] + needs.find_one({"object": obj})["m7"]
 
         obj_data[obj]["oxy"] = dash.find_one({"type": "m8", "object": str(obj)}, sort=[( '_id', pymongo.DESCENDING )])["data"]
         obj_data["total"]["oxy"] = obj_data["total"]["oxy"] + int(obj_data[obj]["oxy"])
+        needed_data[obj]["oxy"] = needs.find_one({"object": obj})["m8"]
+        needed_data["total"]["oxy"] = needed_data["total"]["oxy"] + needs.find_one({"object": obj})["m8"]
 
-    logging.warning(obj_data)
+    logging.warning(needed_data)
 
 
 
