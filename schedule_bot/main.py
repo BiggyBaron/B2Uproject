@@ -36,7 +36,7 @@ group_id = -1001438155243
 def one_time():
     current_time = datetime.datetime.strftime(datetime.datetime.utcnow(),"%H")
     logging.debug('Current time is: ' + current_time)
-    if current_time == "04":
+    if current_time == "04" or current_time == "12":
         logging.debug('Sending scheduled messages')
         try:
             cid = users.find_one({"position": "Айдос"})["user"]
