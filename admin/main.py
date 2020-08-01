@@ -28,6 +28,7 @@ import requests
 from requests import Request, Session
 from threading import Lock
 import logging
+from flask_basicauth import BasicAuth
 
 
 async_mode = None
@@ -38,6 +39,11 @@ socketio = SocketIO(app, async_mode=async_mode)
 thread = None
 thread_lock = Lock()
 app.config['JSON_AS_ASCII'] = False
+
+app.config['BASIC_AUTH_USERNAME'] = 'b2u'
+app.config['BASIC_AUTH_PASSWORD'] = 'b2u4ever'
+
+basic_auth = BasicAuth(app)
 
 client = MongoClient('mongodb://database:27017/')
 db = client.b2u
@@ -224,6 +230,7 @@ def calculate():
 
 # Main page
 @app.route("/", methods=["GET", "POST"])
+@basic_auth.required
 def index():
     calculate()
     return render_template(
