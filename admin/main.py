@@ -41,7 +41,7 @@ thread_lock = Lock()
 app.config['JSON_AS_ASCII'] = False
 
 app.config['BASIC_AUTH_USERNAME'] = 'b2u'
-app.config['BASIC_AUTH_PASSWORD'] = 'b2u4ever'
+app.config['BASIC_AUTH_PASSWORD'] = 'kzb2uRK'
 
 basic_auth = BasicAuth(app)
 
