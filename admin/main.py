@@ -93,9 +93,9 @@ def tubes_calc():
         new_dates = new_dates[::-1]
 
         for i in range(len(new_values)):
-            try:
+            if i>0:
                 values.append([ new_dates[i] , int(new_values[i]) - int(new_values[i-1])])
-            except:
+            else:
                 values.append([ new_dates[i] , int(new_values[i])])
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
