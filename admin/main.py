@@ -94,7 +94,7 @@ def tubes_calc():
 
         for i in range(len(new_values)):
             try:
-                values.append([ new_dates[i] , int(new_values[i]) - int(new_values[i+1])])
+                values.append([ new_dates[i] , int(new_values[i]) - int(new_values[i-1])])
             except:
                 values.append([ new_dates[i] , int(new_values[i])])
         
