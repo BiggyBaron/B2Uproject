@@ -62,35 +62,40 @@ def tubes_calc():
 
     objects = dash.distinct("object")
 
-    start = datetime.datetime.timestamp(datetime.datetime(2020, 7, 28, 0, 0, 0))
-    end = datetime.datetime.timestamp(datetime.datetime(2020, 7, 29, 0, 0, 0))
+    for obj in objects:
 
-    # new_data = dash.find({'type': 'm1', 'object':'ЦФ', 'time': {'$lt': end, '$gt': start}}, sort=[( '_id', pymongo.DESCENDING )])
+        new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])
+        new_dates = []
+        new_values = []
+        values = []
+        times = []
+        check = 0
 
-    new_data = dash.find({'type': 'm1', 'object':'ЦФ'}, sort=[( '_id', pymongo.DESCENDING )])
-    new_dates = []
-    new_values = []
-    values = []
-    times = []
-    check = 0
+        for date in new_data:
+            time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m")
+            if not check:
+                if date["data"]!="0":
+                    new_dates.append(time)
+                    new_values.append(date["data"])
+                    times.append(date["time"])
+                    values.append([times[-1], new_values[-1]])  
+            else:
+                if new_dates[-1]!=time and date["data"]!="0":
+                    new_dates.append(time)
+                    new_values.append(date["data"])
+                    times.append(date["time"])
+                    values.append([times[-1], new_values[-1]])
+        
+        period = datetime.datetime.fromtimestamp(times[0]) - datetime.datetime.fromtimestamp(times[-1])
+        average = round(float(new_values[0])/period)
+        need1 = needs.find_one({"object": obj})["m1"]
+        period2 = 18
+        needed = round(float(need1)/period2)
 
-    for date in new_data:
-        time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m")
-        if not check:
-            if date["data"]!="0":
-                new_dates.append(time)
-                new_values.append(date["data"])
-                times.append(date["time"])
-                values.append([new_dates[-1], new_values[-1]])  
-        else:
-            if new_dates[-1]!=time and date["data"]!="0":
-                new_dates.append(time)
-                new_values.append(date["data"])
-                times.append(date["time"])
-                values.append([new_dates[-1], new_values[-1]])  
-
-    logging.warning(values)
-    
+        logging.warning(values)
+        logging.warning(average)
+        logging.warning(needed)
+        
 
 def calculate():
 
