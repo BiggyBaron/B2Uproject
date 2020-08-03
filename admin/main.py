@@ -109,9 +109,9 @@ def tubes_calc():
         logging.warning(average)
         logging.warning(needed)
 
-        new_tubes[obj]["values"] = values
-        new_tubes[obj]["average"] = average
-        new_tubes[obj]["needed"] = needed
+        # new_tubes[obj]["values"] = values
+        # new_tubes[obj]["average"] = average
+        # new_tubes[obj]["needed"] = needed
 
         
 
