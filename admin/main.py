@@ -82,7 +82,7 @@ def tubes_calc():
                     times.append(date["time"])
                     values.append([new_dates[-1], (int(new_values[-1]))])
             else:
-                if new_dates[-1]!=time and date["data"]!="0":
+                if new_dates[-1]!=time:
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
@@ -91,7 +91,7 @@ def tubes_calc():
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
         need1 = needs.find_one({"object": obj})["m1"]
-        period2 = 18
+        period2 = 22
         needed = round(float(need1)/period2)
 
         logging.warning(values)
