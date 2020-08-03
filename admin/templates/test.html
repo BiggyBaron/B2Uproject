@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Дыши алматы</title>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/data.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/export-data.js"></script>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+
+<style>
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+</head>
+<body class="w3-light-grey">
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+  m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+  (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+  ym(66081133, "init", {
+       clickmap:true,
+       trackLinks:true,
+       accurateTrackBounce:true,
+       webvisor:true
+  });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/66081133" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!-- Top container -->
+<div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Меню</button>
+  <span class="w3-bar-item w3-right">B2U BIG DATA</span>
+</div>
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
+  <div class="w3-container">
+    <h5>Данные по проекту</h5>
+  </div>
+  <div class="w3-bar-block">
+    <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Закрыть меню</a>
+    <a href="#data" class="w3-bar-item w3-button w3-padding"><i class="fa fa-area-chart fa-fw"></i>  Общие данные</a>
+    <a href="#hostpital" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
+    <a href="#industry" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
+    <a href="#delivery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
+    <!-- <a href="#stations_menu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a> -->
+<br><br>
+  </div>
+</nav>
+
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px" id="data">
+    <h5><b><i class="fa fa-area-chart"></i> Общие данные</b></h5>
+  </header>
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="tubes_main"></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Проложено труб</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="console_main"></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено консолей</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="installed_console_main"></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Установлено консолей</h4>
+      </div>
+    </div>
+    <div class="w3-quarter">
+      <div class="w3-container w3-green w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cog w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="produced_main"></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено станций</h4>
+      </div>
+    </div>
+
+    <br>
+    <hr>
+    <br>
+  <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-area-chart"></i> График Ганта</b></h5>
+  </header>
+    <div class="w3-full">
+      <iframe width="100%" height="500px" src="https://time.graphics/embed?v=1&id=395808" frameborder="0" allowfullscreen></iframe>
+      <div><a  style="font-size: 12px; text-decoration: none;" title="Timeline generator" href="https://time.graphics">Посмотреть отдельно</a></div>
+    </div>
+  </div>
+  
+  
+  <header class="w3-container" style="padding-top:22px" id="hostpital">
+    <h5><b><i class="fa fa-hospital-o"></i> Больницы</b></h5>
+  </header>
+ 
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-third">
+        <h5>Выбрать больницу</h5>
+        <select style="width:100%;" id="hospitals_list">
+        </select>
+      </div>
+      <div class="w3-row-padding" style="margin:0 -16px">
+      <div class="w3-full">
+        <h5>Данные</h5>
+        <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td><i class="fa fa-arrows-h w3-text-blue w3-large"></i></td>
+            <td>Проложено труб внутрий зданий</td>
+            <td><i id="tubes_mini">200/1500</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-gamepad w3-text-red w3-large"></i></td>
+            <td>Установлено консолей на 1 газ</td>
+            <td><i id="consoles1_mini">50/200</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-tasks w3-text-yellow w3-large"></i></td>
+            <td>Установлено консолей на 3 газ</td>
+            <td><i id="consoles3_mini">20/200</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-inbox w3-text-red w3-large"></i></td>
+            <td>Количество установленных КРБ</td>
+            <td><i  id="krb">10/70</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-inbox w3-text-blue w3-large"></i></td>
+            <td>Количество установленных РШ</td>
+            <td><i id="rsh">10/50</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-microchip w3-text-yellow w3-large"></i></td>
+            <td>Количество установленных ваакумных станций</td>
+            <td><i id="vaacum">10/50</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-microchip w3-text-black w3-large"></i></td>
+            <td>Количество установленных станций сжатого воздуха</td>
+            <td><i id="zhvozduh">10/50</i></td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-microchip w3-text-blue w3-large"></i></td>
+            <td>Количество установленных кислородных станций</td>
+            <td><i id="oxygen">10/50</i></td>
+          </tr>
+        </table>
+      </div>
+        <br>
+        <br>
+        <h3>График работ по трубам</h3>
+        <div id="container2" style="height: 400px; min-width: 310px"></div>
+    </div>
+  </div>
+  <hr>
+  
+  
+   <header class="w3-container" style="padding-top:22px" id="industry">
+    <h5><b><i class="fa fa-industry"></i> Производство</b></h5>
+  </header>
+<div class="w3-row-padding w3-margin-bottom">
+<div class="w3-quarter">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="1consoles">2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено консолей на 1 газ</h4>
+      </div>
+    </div>
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-teal w3-padding-16">
+        <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="3consoles">200/450</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Произведено консолей на 3 газа</h4>
+      </div>
+    </div>
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-red w3-padding-16">
+        <div class="w3-left"><i class="fa fa-inbox w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="rsh_prod">54/100</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных РШ</h4>
+      </div>
+    </div>
+    
+    
+    <div class="w3-quarter">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16">
+        <div class="w3-left"><i class="fa fa-inbox w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="krb_prod">62/100</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных КРБ</h4>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="w3-row-padding w3-margin-bottom">
+    <div class="w3-third">
+          <div class="w3-container w3-black w3-padding-16">
+            <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+            <div class="w3-right">
+              <h3 id="comp_prod">2530/4800</h3>
+            </div>
+            <div class="w3-clear"></div>
+            <h4>Количество произведенных компрессорных станций</h4>
+          </div>
+        </div>
+    <div class="w3-third">
+      <div class="w3-container w3-yellow w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="vac_prod">2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных вакуумных станций</h4>
+      </div>
+    </div>
+    <div class="w3-third">
+      <div class="w3-container w3-blue w3-padding-16">
+        <div class="w3-left"><i class="fa fa-cube w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3 id="oxy_prod">2530/4800</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Количество произведенных кислородных станций</h4>
+      </div>
+    </div>
+        
+
+      
+    <hr>
+    <br>
+    <br>
+    <br>
+    <header class="w3-container" style="padding-top:22px" id="delivery">
+      <h5><b><i class="fa fa-plane"></i> Доставка с зарубежья</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-half">
+            <div class="w3-container w3-blue w3-padding-16">
+              <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="details_done"></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Произведено деталей для кислородных станций</h4>
+            </div>
+          </div>
+          
+          <div class="w3-half">
+            <div class="w3-container w3-teal w3-padding-16">
+              <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="details_delivered"></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Доставлено деталей для кислородных станций</h4>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-half">
+            <div class="w3-container w3-yellow w3-padding-16">
+              <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="vac_details_done"></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Произведено деталей для вакуумных станций</h4>
+            </div>
+          </div>
+          
+          <div class="w3-half">
+            <div class="w3-container w3-orange w3-padding-16">
+              <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="vac_details_delivered">200/4800</h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Доставлено деталей для вакуумных станций</h4>
+            </div>
+          </div>
+
+
+        </div>
+        <div class="w3-row-padding w3-margin-bottom">
+      <div class="w3-half">
+            <div class="w3-container w3-black w3-padding-16">
+              <div class="w3-left"><i class="fa fa-gamepad w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="comp_details_done"></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Произведено деталей для компрессорных станций</h4>
+            </div>
+          </div>
+          
+          <div class="w3-half">
+            <div class="w3-container w3-grey w3-padding-16">
+              <div class="w3-left"><i class="fa fa-tasks w3-xxxlarge"></i></div>
+              <div class="w3-right">
+                <h3 id="comp_details_delivered"></h3>
+              </div>
+              <div class="w3-clear"></div>
+              <h4>Доставлено деталей для компрессорных станций</h4>
+            </div>
+          </div>
+
+
+        </div>
+
+
+<!-- 
+          <header class="w3-container" style="padding-top:22px" id="stations_menu">
+            <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
+          </header>
+          <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+              
+              <div class="w3-third">
+                <h5>Станции</h5>
+                <table class="w3-table w3-striped w3-white" id="stations">
+                </table>
+              </div>
+              
+              <div class="w3-twothird">
+                <h5>Карта станций</h5>
+                <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3A684a1bf4066873ab85251bbd24388af44700d105f56c48d0cda30251c8c3d138&amp;source=constructor" width="100%" height="500" frameborder="0"></iframe>
+              </div>
+            </div>
+          </div>
+          <hr> -->
+
+  <!-- Footer -->
+  <footer class="w3-container w3-padding-16 w3-light-grey">
+    <h4>Админ панель</h4>
+    <p>Сделано <a href="https://cleverest.tech" target="_blank">Cleverest Technologies</a></p>
+  </footer>
+
+  <!-- End page content -->
+</div>
+
+
+<script>
+  function tubes_chart(city) {
+  Highcharts.setOptions({
+    lang: {
+            loading: 'Загрузка...',
+            months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь'],
+            weekdays: ['Воскресенье', 'Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота'],
+            shortMonths: ['Янв', 'Фев', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Нояб', 'Дек'],
+            exportButtonTitle: "Экспорт",
+            printButtonTitle: "Печать",
+            rangeSelectorFrom: "С",
+            rangeSelectorTo: "По",
+            rangeSelectorZoom: "Период",
+            downloadPNG: 'Скачать PNG',
+            downloadJPEG: 'Скачать JPEG',
+            downloadPDF: 'Скачать PDF',
+            downloadSVG: 'Скачать SVG',
+            printChart: 'Напечатать график'   
+        }        
+});
+		var data_tubes = data["tubes_data"][city];
+    var startDate = new Date(data_tubes[data_tubes.length - 1][0]), // Get year of last data point
+        minRate = 1,
+        maxRate = 0,
+        startPeriod,
+        date,
+        rate,
+        index;
+
+    startDate.setMonth(startDate.getMonth() - 1); // a quarter of a year before last data point
+    startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+    for (index = data.length - 1; index >= 0; index = index - 1) {
+        date = data_tubes[index][0]; // data[i][0] is date
+        rate = data_tubes[index][1]; // data[i][1] is exchange rate
+        if (date < startPeriod) {
+            break; // stop measuring highs and lows
+        }
+        if (rate > maxRate) {
+            maxRate = rate;
+        }
+        if (rate < minRate) {
+            minRate = rate;
+        }
+    }
+
+
+        var MY = Highcharts.stockChart('container2', {
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        yAxis: {
+            title: {
+                text: 'Метров в день'
+            },
+            plotLines: [
+            {
+                value: 35,
+                color: 'red',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'План на день: 35'
+                }
+            },
+            {
+                value: 55,
+                color: 'green',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'План на день: 35'
+                }
+            }]
+        },
+
+        series: [{
+            name: 'Шт/день',
+            data: data_tubes,
+            tooltip: {
+                valueDecimals: 0
+            }
+        }]
+    });};
+
+document.addEventListener('DOMContentLoaded', tubes_chart());
+</script>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+    overlayBg.style.display = "none";
+  } else {
+    mySidebar.style.display = 'block';
+    overlayBg.style.display = "block";
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+  mySidebar.style.display = "none";
+  overlayBg.style.display = "none";
+}
+</script>
+<script>
+  var data_tubes = [];
+</script>
+
+<script>
+  var tubes_main = document.getElementById("tubes_main");
+  var console_main = document.getElementById("console_main");
+  var installed_console_main = document.getElementById("installed_console_main");
+  var produced_main = document.getElementById("produced_main");
+
+  var hospitals_list = document.getElementById("hospitals_list");
+  var tubes_mini = document.getElementById("tubes_mini");
+  var consoles1_mini = document.getElementById("consoles1_mini");
+  var consoles3_mini = document.getElementById("consoles3_mini");
+  var krb = document.getElementById("krb");
+  var rsh = document.getElementById("rsh");
+  var vaacum = document.getElementById("vaacum");
+  var zhvozduh = document.getElementById("zhvozduh");
+  var oxygen = document.getElementById("oxygen");
+
+  var consoles1 = document.getElementById("1consoles");
+  var consoles3 = document.getElementById("3consoles");
+  var rsh_prod = document.getElementById("rsh_prod");
+  var krb_prod = document.getElementById("krb_prod");
+  var comp_prod = document.getElementById("comp_prod");
+  var vac_prod = document.getElementById("vac_prod");
+  var oxy_prod = document.getElementById("oxy_prod");
+
+  var details_done = document.getElementById("details_done");
+  var details_delivered = document.getElementById("details_delivered");
+  var vac_details_done = document.getElementById("vac_details_done");
+  var vac_details_delivered = document.getElementById("vac_details_delivered");
+  var comp_details_done = document.getElementById("comp_details_done");
+  var comp_details_delivered = document.getElementById("comp_details_delivered");
+
+  var stations = document.getElementById("stations");
+
+  var data;
+  var list_new = 1;
+
+
+  function makeit(data){
+    console.log("We are connected");
+    
+
+    // region: Основные данные без математики
+    tubes_main.innerHTML = data["Проложено труб"];
+    console_main.innerHTML = data["Произведено консолей"];
+    installed_console_main.innerHTML = data["Установлено консолей"];
+    produced_main.innerHTML = data["Произведено деталей в общем"];
+
+    consoles1.innerHTML = data["консоль1"]["есть"] + "/" + data["консоль1"]["надо"];
+    consoles3.innerHTML = data["консоль3"]["есть"] + "/" + data["консоль3"]["надо"];
+    rsh_prod.innerHTML = data["рш"]["есть"] + "/" + data["рш"]["надо"];
+    krb_prod.innerHTML = data["крб"]["есть"] + "/" + data["крб"]["надо"];
+    comp_prod.innerHTML = data["комп"]["есть"] + "/" + data["комп"]["надо"];
+    vac_prod.innerHTML = data["вак"]["есть"] + "/" + data["вак"]["надо"];
+    oxy_prod.innerHTML = data["кис"]["есть"] + "/" + data["кис"]["надо"];
+
+    details_done.innerHTML = data["Произведено деталей"]["есть"] + "/" + data["Произведено деталей"]["надо"]
+    details_delivered.innerHTML = data["Доставлено деталей"]["есть"] + "/" + data["Доставлено деталей"]["надо"]
+    vac_details_done.innerHTML = data["vac_Произведено деталей"]["есть"] + "/" + data["vac_Произведено деталей"]["надо"]
+    vac_details_delivered.innerHTML = data["vac_Доставлено деталей"]["есть"] + "/" + data["vac_Доставлено деталей"]["надо"]
+    comp_details_done.innerHTML = data["comp_Произведено деталей"]["есть"] + "/" + data["comp_Произведено деталей"]["надо"]
+    comp_details_delivered.innerHTML = data["comp_Доставлено деталей"]["есть"] + "/" + data["comp_Доставлено деталей"]["надо"]
+    
+    
+    // endregion
+    if(list_new == 1){
+      create_list();
+      list_new = 0;
+    }
+    
+    hosp_list();
+   
+  }
+
+  function hosp_list(){
+    var hosp_name = hospitals_list.value;
+    console.log(hosp_name);
+    console.log(data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"]);
+    try{
+      tubes_mini.innerHTML = data["Объекты"][hosp_name]["Проложено труб"]["есть"] + "/" + data["Объекты"][hosp_name]["Проложено труб"]["надо"];
+      consoles1_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей 1"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей 1"]["надо"];
+      consoles3_mini.innerHTML = data["Объекты"][hosp_name]["Установлено консолей 3"]["есть"] + "/" + data["Объекты"][hosp_name]["Установлено консолей 3"]["надо"];
+      krb.innerHTML = data["Объекты"][hosp_name]["КРБ"]["есть"] + "/" + data["Объекты"][hosp_name]["КРБ"]["надо"];
+      rsh.innerHTML = data["Объекты"][hosp_name]["РШ"]["есть"] + "/" + data["Объекты"][hosp_name]["РШ"]["надо"];
+      vaacum.innerHTML = data["Объекты"][hosp_name]["Ваакум"]["есть"] + "/" + data["Объекты"][hosp_name]["Ваакум"]["надо"];
+      zhvozduh.innerHTML = data["Объекты"][hosp_name]["Воздух"]["есть"] + "/" + data["Объекты"][hosp_name]["Воздух"]["надо"];
+      oxygen.innerHTML = data["Объекты"][hosp_name]["Кислород"]["есть"] + "/" + data["Объекты"][hosp_name]["Кислород"]["надо"];
+
+      tubes_chart(hosp_name);
+      }
+    catch{
+      var a = 0;
+    }
+
+    // data["tubes_data"]
+    
+  }
+
+  function create_list(){
+    console.log("create list is started");
+    var list = document.getElementById("hospitals_list");
+    var template = '<option value="NAME">NAME2</option>';
+    var all = "";
+    for (const [key, value] of Object.entries(data["Объекты"])) {
+      all = all + template.replace("NAME", key).replace("NAME2", key);
+    }
+    list.innerHTML = all;
+  }
+
+  // Client Side Javascript to receive numbers.
+
+  $("#hospitals_list").on('change', function() {
+      hosp_list();
+  });
+
+  $(document).ready(function(){
+      function runFunction(){
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/test', {'forceNew': true});
+        socket.on('my response', function(msg) {
+          data = msg;
+          makeit(data);
+          socket.disconnect();
+        });
+      };
+      runFunction();
+      var t=setInterval(runFunction,3600000);
+  });
+
+</script>
+
+</body>
+</html>

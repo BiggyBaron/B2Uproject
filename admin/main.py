@@ -58,6 +58,15 @@ sklad = db["sklad"]
 logging.basicConfig(level=logging.WARNING)
 
 
+def tubes_calc():
+
+    start = datetime.datetime(2020, 7, 28, 0, 0, 0)
+    end = datetime.datetime(2020, 7, 29, 0, 0, 0)
+
+    new_data = dash.find({'type': 'm1', 'datahora': {'$lt': end, '$gte': start}}, sort=[( '_id', pymongo.DESCENDING )])
+    logging.warning(new_data)
+
+
 def calculate():
 
     objects = dash.distinct("object")
@@ -241,8 +250,9 @@ def index():
 @app.route("/test/", methods=["GET", "POST"])
 def index2():
     calculate()
+    tubes_calc()
     return render_template(
-        "index.html", **locals())
+        "test.html", **locals())
 
 
 @socketio.on('connect', namespace='/test')
