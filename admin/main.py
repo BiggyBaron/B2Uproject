@@ -71,16 +71,22 @@ def tubes_calc():
     new_dates = []
     new_values = []
     values = []
+    check = 0
 
     for date in new_data:
         time = datetime.datetime.fromtimestamp(date["time"])
-        if new_dates[0]:
-            if new_dates[-1] and new_dates[-1]!=time and date["data"]!="0":
+        if not check:
+            if date["data"]!="0":
                 new_dates.append(time)
                 new_values.append(date["data"])
-                values.append([new_dates[-1], new_values[-1]])        
+                values.append([new_dates[-1], new_values[-1]])  
+        else:
+            if new_dates[-1]!=time and date["data"]!="0":
+                new_dates.append(time)
+                new_values.append(date["data"])
+                values.append([new_dates[-1], new_values[-1]])  
 
-    logging.warning(values)    
+    logging.warning(values)
     
 
 def calculate():
