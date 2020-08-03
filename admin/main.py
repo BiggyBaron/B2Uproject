@@ -61,6 +61,9 @@ logging.basicConfig(level=logging.WARNING)
 def tubes_calc():
 
     objects = dash.distinct("object")
+    new_tubes = {"total": {"values":[], "average": 0, "needed": 0}}
+
+    total_sum = 0
 
     for obj in objects:
 
@@ -84,7 +87,7 @@ def tubes_calc():
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
-                    values.append([times[-1], new_values[-1]])
+                    values.append([times[-1], new_values[-1]-new_values[-2]])
         
         period = datetime.datetime.fromtimestamp(times[0]) - datetime.datetime(2020, 7, 30, 0, 0, 0)
         average = round(float(new_values[0])/period.days)
@@ -95,6 +98,7 @@ def tubes_calc():
         logging.warning(values)
         logging.warning(average)
         logging.warning(needed)
+
         
 
 def calculate():
