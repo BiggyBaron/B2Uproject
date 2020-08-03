@@ -64,8 +64,9 @@ def tubes_calc():
     end = datetime.datetime(2020, 7, 29, 0, 0, 0)
 
     new_data = dash.find({'type': 'm1', 'datahora': {'$lt': end, '$gte': start}}, sort=[( '_id', pymongo.DESCENDING )])
-    logging.warning(str(new_data))
-
+    for dat in new_data:
+        logging.warning(str(dat))
+    
 
 def calculate():
 
