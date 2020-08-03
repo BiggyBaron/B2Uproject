@@ -80,13 +80,13 @@ def tubes_calc():
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
-                    values.append([times[-1], (int(new_values[-1])-int(new_values[-2]))])
+                    values.append([new_dates[-1], (int(new_values[-1]))])
             else:
                 if new_dates[-1]!=time and date["data"]!="0":
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
-                    values.append([times[-1], (int(new_values[-1])-int(new_values[-2]))])
+                    values.append([new_dates[-1], (int(new_values[-1])-int(new_values[-2]))])
         
         period = datetime.datetime.fromtimestamp(times[0]) - datetime.datetime(2020, 7, 30, 0, 0, 0)
         average = round(float(new_values[0])/period.days)
