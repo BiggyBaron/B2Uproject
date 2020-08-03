@@ -60,12 +60,26 @@ logging.basicConfig(level=logging.WARNING)
 
 def tubes_calc():
 
+    objects = dash.distinct("object")
+
     start = datetime.datetime.timestamp(datetime.datetime(2020, 7, 28, 0, 0, 0))
     end = datetime.datetime.timestamp(datetime.datetime(2020, 7, 29, 0, 0, 0))
 
-    new_data = dash.find({'type': 'm1', 'time': {'$lt': end, '$gt': start}}, sort=[( '_id', pymongo.DESCENDING )])
-    for dat in new_data:
-        logging.warning(str(dat))
+    # new_data = dash.find({'type': 'm1', 'object':'ЦФ', 'time': {'$lt': end, '$gt': start}}, sort=[( '_id', pymongo.DESCENDING )])
+
+    new_data = dash.find({'type': 'm1', 'object':'ЦФ'}, sort=[( '_id', pymongo.DESCENDING )])
+    new_dates = []
+    new_values = []
+    values = []
+
+    for date in new_data:
+        time = datetime.datetime.fromtimestamp(date["time"])
+        if new_dates[-1] and new_dates[-1]!=time and date["data"]!="0":
+            new_dates.append(time)
+            new_values.append(date["data"])
+            values.append([new_dates[-1], new_values[-1]])        
+
+    logging.warning(values)    
     
 
 def calculate():
