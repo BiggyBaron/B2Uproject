@@ -67,7 +67,7 @@ def tubes_calc():
 
     for obj in objects:
 
-        new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])
+        new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.ASCENDING )])
         new_dates = []
         new_values = []
         values = []
