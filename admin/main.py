@@ -67,7 +67,7 @@ def tubes_calc():
 
     for obj in objects:
 
-        new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.ASCENDING )])
+        new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])
         new_dates = []
         new_values = []
         values = []
@@ -80,13 +80,23 @@ def tubes_calc():
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
-                    values.append([new_dates[-1], (int(new_values[-1]))])
+                    # values.append([new_dates[-1], (int(new_values[-1]))])
             else:
-                if new_dates[-1]!=time:
+                if new_dates[-1]!=time and date["data"]!="0":
                     new_dates.append(time)
                     new_values.append(date["data"])
                     times.append(date["time"])
-                    values.append([new_dates[-1], (int(new_values[-1])-int(new_values[-2]))])
+                    # values.append([new_dates[-1], (int(new_values[-1])-int(new_values[-2]))])
+        
+        new_values = new_values[::-1]
+        times = times[::-1]
+        new_dates = new_dates[::-1]
+
+        for i in range(len(new_values)):
+            try:
+                values.append([ new_dates[i] , int(new_values[i]) - int(new_values[i+1]))
+            except:
+                values.append([ new_dates[i] , int(new_values[i]))
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
