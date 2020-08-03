@@ -74,7 +74,7 @@ def tubes_calc():
         times = []
 
         for date in new_data:
-            time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m")
+            time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m.%y")
             if not new_dates:
                 if date["data"]!="0":
                     new_dates.append(time)
@@ -94,9 +94,9 @@ def tubes_calc():
 
         for i in range(len(new_values)):
             if i>0:
-                values.append([ new_dates[i] , int(new_values[i]) - int(new_values[i-1])])
+                values.append([ datetime.datetime.strptime(new_dates[i], "%d.%m.%y") , int(new_values[i]) - int(new_values[i-1])])
             else:
-                values.append([ new_dates[i] , int(new_values[i])])
+                values.append([ datetime.datetime.strptime(new_dates[i], "%d.%m.%y") , int(new_values[i])])
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
@@ -104,9 +104,14 @@ def tubes_calc():
         period2 = 22
         needed = round(float(need1)/period2)
 
+        logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
         logging.warning(values)
         logging.warning(average)
         logging.warning(needed)
+
+        new_tubes[obj]["values"] = values
+        new_tubes[obj]["average"] = average
+        new_tubes[obj]["needed"] = needed
 
         
 
