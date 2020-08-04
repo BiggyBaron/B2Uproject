@@ -115,7 +115,7 @@ def tubes_calc():
     all_days = (last_day - datetime.datetime(2020, 7, 28, 0, 0, 0)).days
 
     for i in range(all_days):
-        today = datetime.datetime(2020, 7, 28, 0, 0, 0) + datetime.datetime.timedelta(days=i)
+        today = datetime.datetime(2020, 7, 28, 0, 0, 0) + datetime.timedelta(days=i)
         total = 0
         for obj in objects:
             for i in range(len(new_tubes[obj]["values"])):
