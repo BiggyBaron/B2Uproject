@@ -105,13 +105,25 @@ def tubes_calc():
         needed = round(float(need1)/period2)
 
         logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
-        logging.warning(values)
-        logging.warning(average)
-        logging.warning(needed)
+        # logging.warning(values)
+        # logging.warning(average)
+        # logging.warning(needed)
 
-        # new_tubes[obj]["values"] = values
-        # new_tubes[obj]["average"] = average
-        # new_tubes[obj]["needed"] = needed
+        new_tubes[obj] = {"values": values, "average": average, "needed": needed}
+        
+    last_day = new_data = datetime.datetime.strptime(datetime.datetime.fromtimestamp(dash.find_one({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])["time"]).strftime("%d.%m.%y"), "%d.%m.%y")
+    all_days = (last_day - datetime.datetime(2020, 7, 28, 0, 0, 0)).days
+
+    for i in range(all_days):
+        today = datetime.datetime(2020, 7, 28, 0, 0, 0) + datetime.datetime.timedelta(days=i)
+        total = 0
+        for obj in objects:
+            for i in range(len(new_tubes[obj]["values"])):
+                if new_tubes[obj]["values"][i][0] == today:
+                    total = total + new_tubes[obj]["values"][i][1]
+        new_tubes["total"]["values"].append([today, total])
+    
+    logging.warning(new_tubes["total"]["values"])
 
         
 
