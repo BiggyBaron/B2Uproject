@@ -70,6 +70,8 @@ def tubes_calc():
         new_values = []
         values = []
         times = []
+        percent = []
+        need1 = needs.find_one({"object": obj})["m1"]
 
         for date in new_data:
             time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m.%y")
@@ -93,12 +95,13 @@ def tubes_calc():
         for i in range(len(new_values)):
             if i>0:
                 values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i]) - int(new_values[i-1])])
+                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(float(int(new_values[i]) - int(new_values[i-1]))/float(need1))])
             else:
                 values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i])])
+                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(float(int(new_values[i]))/float(need1))])
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
-        need1 = needs.find_one({"object": obj})["m1"]
         period2 = 22
         needed = round(float(need1)/period2)
 
@@ -107,7 +110,7 @@ def tubes_calc():
         # logging.warning(average)
         # logging.warning(needed)
 
-        new_tubes[obj] = {"values": values, "average": average, "needed": needed}
+        new_tubes[obj] = {"percent": percent, "values": values, "average": average, "needed": needed}
         new_tubes["total"]["average"] = new_tubes["total"]["average"] + new_tubes[obj]["average"]
         new_tubes["total"]["needed"] = new_tubes["total"]["needed"] + new_tubes[obj]["needed"]
         
@@ -117,13 +120,16 @@ def tubes_calc():
     for i in range(all_days):
         today = datetime.datetime(2020, 7, 28, 0, 0, 0) + datetime.timedelta(days=i)
         total = 0
+        perc_total = 0
         for obj in objects:
             for i in range(len(new_tubes[obj]["values"])):
                 if new_tubes[obj]["values"][i][0] == datetime.datetime.timestamp(today)*1000:
                     total = total + new_tubes[obj]["values"][i][1]
+                    perc_total = perc_total + new_tubes[obj]["percent"][i][1]
             
             
         new_tubes["total"]["values"].append([datetime.datetime.timestamp(today)*1000, total])
+        new_tubes["total"]["percent"].append([datetime.datetime.timestamp(today)*1000, total])
     
     # logging.warning(new_tubes["total"]["values"])
 
