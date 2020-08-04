@@ -63,6 +63,11 @@ def tubes_calc():
     objects = dash.distinct("object")
     new_tubes = {"total": {"percent":[], "values":[], "average": 0, "needed": 0}}
 
+    needsis = needs.find()
+    needs_total = 0
+    for n in needsis:
+        needs_total = needs_total + float(n["m1"])
+
     for obj in objects:
 
         new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])
@@ -72,6 +77,8 @@ def tubes_calc():
         times = []
         percent = []
         need1 = needs.find_one({"object": obj})["m1"]
+
+
 
         for date in new_data:
             time = datetime.datetime.fromtimestamp(date["time"]).strftime("%d.%m.%y")
@@ -125,11 +132,11 @@ def tubes_calc():
             for i in range(len(new_tubes[obj]["values"])):
                 if new_tubes[obj]["values"][i][0] == datetime.datetime.timestamp(today)*1000:
                     total = total + new_tubes[obj]["values"][i][1]
-                    perc_total = perc_total + new_tubes[obj]["percent"][i][1]
+                    perc_total = perc_total + new_tubes[obj]["values"][i][1]
             
             
         new_tubes["total"]["values"].append([datetime.datetime.timestamp(today)*1000, total])
-        new_tubes["total"]["percent"].append([datetime.datetime.timestamp(today)*1000, perc_total])
+        new_tubes["total"]["percent"].append([datetime.datetime.timestamp(today)*1000, round((float(perc_total)/needs_total))])
     
     # logging.warning(new_tubes["total"]["values"])
     logging.warning(new_tubes)
