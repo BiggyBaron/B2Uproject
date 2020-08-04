@@ -136,7 +136,7 @@ def tubes_calc():
             
             
         new_tubes["total"]["values"].append([datetime.datetime.timestamp(today)*1000, total])
-        new_tubes["total"]["percent"].append([datetime.datetime.timestamp(today)*1000, round((float(perc_total)/needs_total))])
+        new_tubes["total"]["percent"].append([datetime.datetime.timestamp(today)*1000, round((100*float(perc_total)/needs_total))])
     
     # logging.warning(new_tubes["total"]["values"])
     logging.warning(new_tubes)
