@@ -104,8 +104,8 @@ def tubes_calc():
         period2 = 22
         needed = round(float(need1)/period2)
 
-        logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
-        # logging.warning(values)
+        # logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
+        logging.warning(values)
         # logging.warning(average)
         # logging.warning(needed)
 
