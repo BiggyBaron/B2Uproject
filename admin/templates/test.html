@@ -396,6 +396,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 <script>
   function tubes_chart(city) {
+    if(city == "Общее"){city = "total"};
   Highcharts.setOptions({
     lang: {
             loading: 'Загрузка...',
@@ -481,7 +482,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         }]
     });};
 
-document.addEventListener('DOMContentLoaded', tubes_chart());
+document.addEventListener('DOMContentLoaded', tubes_chart("Общее"));
 </script>
 
 <script>
