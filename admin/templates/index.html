@@ -183,6 +183,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
           </tr>
         </table>
       </div>
+        <br>
+        <br>
+        <h3>График работ по трубам</h3>
+        <div id="container2" style="height: 400px; min-width: 310px"></div>
     </div>
   </div>
   <hr>
@@ -391,7 +395,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
 
 <script>
-function chart1() {
+  function tubes_chart(city) {
   Highcharts.setOptions({
     lang: {
             loading: 'Загрузка...',
@@ -410,9 +414,8 @@ function chart1() {
             printChart: 'Напечатать график'   
         }        
 });
-		var data = [[1167609600000, 22], [1167696000000, 25], [1167782400000, 43], [1167868800000, 58], [1167955200000, 64], [1168214400000, 33]];
-    
-    var startDate = new Date(data[data.length - 1][0]), // Get year of last data point
+		var data_tubes = data["tubes_data"][city]["values"];
+    var startDate = new Date(data_tubes[data_tubes.length - 1][0]), // Get year of last data point
         minRate = 1,
         maxRate = 0,
         startPeriod,
@@ -420,12 +423,12 @@ function chart1() {
         rate,
         index;
 
-    startDate.setMonth(startDate.getMonth() - 3); // a quarter of a year before last data point
+    startDate.setMonth(startDate.getMonth() - 1); // a quarter of a year before last data point
     startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
 
     for (index = data.length - 1; index >= 0; index = index - 1) {
-        date = data[index][0]; // data[i][0] is date
-        rate = data[index][1]; // data[i][1] is exchange rate
+        date = data_tubes[index][0]; // data[i][0] is date
+        rate = data_tubes[index][1]; // data[i][1] is exchange rate
         if (date < startPeriod) {
             break; // stop measuring highs and lows
         }
@@ -436,8 +439,8 @@ function chart1() {
             minRate = rate;
         }
     }
-				
-        
+
+
         var MY = Highcharts.stockChart('container2', {
 
         rangeSelector: {
@@ -446,29 +449,39 @@ function chart1() {
 
         yAxis: {
             title: {
-                text: 'Штук в день'
+                text: 'Метров в день'
             },
             plotLines: [
             {
-                value: 35,
+                value: data["tubes_data"][city]["average"],
                 color: 'red',
                 dashStyle: 'shortdash',
                 width: 2,
                 label: {
-                    text: 'План на день: 35'
+                    text: 'Средняя скорость'
+                }
+            },
+            {
+                value: data["tubes_data"][city]["needed"],
+                color: 'green',
+                dashStyle: 'shortdash',
+                width: 2,
+                label: {
+                    text: 'Плановая скорость'
                 }
             }]
         },
 
         series: [{
             name: 'Шт/день',
-            data: data,
+            data: data_tubes,
             tooltip: {
                 valueDecimals: 0
             }
         }]
-    });
-};
+    });};
+
+document.addEventListener('DOMContentLoaded', tubes_chart());
 </script>
 
 <script>
@@ -496,7 +509,7 @@ function w3_close() {
 }
 </script>
 <script>
-
+  var data_tubes = [];
 </script>
 
 <script>
@@ -585,10 +598,14 @@ function w3_close() {
       vaacum.innerHTML = data["Объекты"][hosp_name]["Ваакум"]["есть"] + "/" + data["Объекты"][hosp_name]["Ваакум"]["надо"];
       zhvozduh.innerHTML = data["Объекты"][hosp_name]["Воздух"]["есть"] + "/" + data["Объекты"][hosp_name]["Воздух"]["надо"];
       oxygen.innerHTML = data["Объекты"][hosp_name]["Кислород"]["есть"] + "/" + data["Объекты"][hosp_name]["Кислород"]["надо"];
+
+      tubes_chart(hosp_name);
       }
     catch{
       var a = 0;
     }
+
+    // data["tubes_data"]
     
   }
 

@@ -63,8 +63,6 @@ def tubes_calc():
     objects = dash.distinct("object")
     new_tubes = {"total": {"values":[], "average": 0, "needed": 0}}
 
-    total_sum = 0
-
     for obj in objects:
 
         new_data = dash.find({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])
@@ -105,11 +103,13 @@ def tubes_calc():
         needed = round(float(need1)/period2)
 
         # logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
-        logging.warning(values)
+        # logging.warning(values)
         # logging.warning(average)
         # logging.warning(needed)
 
         new_tubes[obj] = {"values": values, "average": average, "needed": needed}
+        new_tubes["total"]["average"] = new_tubes["total"]["average"] + new_tubes[obj]["average"]
+        new_tubes["total"]["needed"] = new_tubes["total"]["needed"] + new_tubes[obj]["needed"]
         
     last_day = new_data = datetime.datetime.strptime(datetime.datetime.fromtimestamp(dash.find_one({'type': 'm1', 'object':obj}, sort=[( '_id', pymongo.DESCENDING )])["time"]).strftime("%d.%m.%y"), "%d.%m.%y")
     all_days = (last_day - datetime.datetime(2020, 7, 28, 0, 0, 0)).days
@@ -121,9 +121,13 @@ def tubes_calc():
             for i in range(len(new_tubes[obj]["values"])):
                 if new_tubes[obj]["values"][i][0] == today:
                     total = total + new_tubes[obj]["values"][i][1]
+            
+            
         new_tubes["total"]["values"].append([today, total])
     
-    logging.warning(new_tubes["total"]["values"])
+    # logging.warning(new_tubes["total"]["values"])
+
+    return new_tubes
 
         
 
@@ -294,6 +298,10 @@ def calculate():
     
     data_now["date"] = datetime.datetime.now().strftime("%d.%m")
 
+    new_t = tubes_calc()
+
+    data_now["tubes_data"] = new_t
+
     data_now_db.insert_one(data_now)
 
 
@@ -310,7 +318,6 @@ def index():
 @app.route("/test/", methods=["GET", "POST"])
 def index2():
     calculate()
-    tubes_calc()
     return render_template(
         "test.html", **locals())
 
