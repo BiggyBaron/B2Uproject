@@ -95,10 +95,10 @@ def tubes_calc():
         for i in range(len(new_values)):
             if i>0:
                 values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i]) - int(new_values[i-1])])
-                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(float(int(new_values[i]) - int(new_values[i-1]))/float(need1))])
+                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(100*float(int(new_values[i]) - int(new_values[i-1]))/float(need1))])
             else:
                 values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i])])
-                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(float(int(new_values[i]))/float(need1))])
+                percent.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , round(100*float(int(new_values[i]))/float(need1))])
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
