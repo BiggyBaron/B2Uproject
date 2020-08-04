@@ -61,7 +61,7 @@ logging.basicConfig(level=logging.WARNING)
 def tubes_calc():
 
     objects = dash.distinct("object")
-    new_tubes = {"total": {"values":[], "average": 0, "needed": 0}}
+    new_tubes = {"total": {"percent":[], "values":[], "average": 0, "needed": 0}}
 
     for obj in objects:
 
