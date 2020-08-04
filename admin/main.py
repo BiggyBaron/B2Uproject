@@ -92,9 +92,9 @@ def tubes_calc():
 
         for i in range(len(new_values)):
             if i>0:
-                values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i]*1000, "%d.%m.%y")) , int(new_values[i]) - int(new_values[i-1])])
+                values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i]) - int(new_values[i-1])])
             else:
-                values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i]*1000, "%d.%m.%y")) , int(new_values[i])])
+                values.append([ datetime.datetime.timestamp(datetime.datetime.strptime(new_dates[i], "%d.%m.%y"))*1000 , int(new_values[i])])
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
