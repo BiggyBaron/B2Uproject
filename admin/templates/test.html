@@ -187,6 +187,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <br>
         <h3>График работ по трубам</h3>
         <div id="container2" style="height: 400px; min-width: 310px"></div>
+        <br>
+        <br>
+        <h3>График работ по процентам</h3>
+        <div id="container%" style="height: 400px; min-width: 310px"></div>
     </div>
   </div>
   <hr>
@@ -442,7 +446,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     }
 
 
-        var MY = Highcharts.stockChart('container2', {
+  var MY = Highcharts.stockChart('container2', {
 
         rangeSelector: {
             selected: 1
@@ -480,7 +484,60 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
                 valueDecimals: 0
             }
         }]
-    });};
+    });
+
+    var data_proc = data["tubes_data"][city]["values"];
+    var startDate = new Date(data_tubes[data_tubes.length - 1][0]), // Get year of last data point
+        minRate = 1,
+        maxRate = 0,
+        startPeriod,
+        date,
+        rate,
+        index;
+
+    startDate.setMonth(startDate.getMonth() - 1); // a quarter of a year before last data point
+    startPeriod = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+
+    for (index = data.length - 1; index >= 0; index = index - 1) {
+        date = data_proc[index][0]; // data[i][0] is date
+        rate = data_proc[index][1]; // data[i][1] is exchange rate
+        if (date < startPeriod) {
+            break; // stop measuring highs and lows
+        }
+        if (rate > maxRate) {
+            maxRate = rate;
+        }
+        if (rate < minRate) {
+            minRate = rate;
+        }
+    }
+    
+    var NEW = Highcharts.stockChart('container%', {
+        chart: {
+            alignTicks: false
+        },
+
+        rangeSelector: {
+            selected: 1
+        },
+
+        series: [{
+            type: 'column',
+            name: 'Проложено труб в %',
+            data: data_proc,
+            dataGrouping: {
+                units: [[
+                    'days', // unit name
+                    [1] // allowed multiples
+                ], [
+                    'month',
+                    [1, 2, 3, 4, 6]
+                ]]
+            }
+        }]
+    }
+    
+    };
 
 document.addEventListener('DOMContentLoaded', tubes_chart("Общее"));
 </script>
