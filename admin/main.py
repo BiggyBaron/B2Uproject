@@ -109,7 +109,7 @@ def tubes_calc():
         
         period = datetime.datetime.fromtimestamp(times[-1]) - datetime.datetime(2020, 7, 28, 0, 0, 0)
         average = round(float(new_values[-1])/period.days)
-        period2 = 22
+        period2 = 15
         needed = round(float(need1)/period2)
 
         # logging.warning("Объект: " + str(obj) + ", скорость сейчас: " + str(average) + ", а надо: " + str(needed))
