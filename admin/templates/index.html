@@ -18,6 +18,63 @@
 
 <style>
 html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+@font-face{font-family:'Calluna';
+ src:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/4273/callunasansregular-webfont.woff') format('woff');
+}
+#columns {
+	column-width: 320px;
+	column-gap: 15px;
+  width: 90%;
+	max-width: 1100px;
+	margin: 50px auto;
+}
+
+div#columns figure {
+	background: #fefefe;
+	border: 2px solid #fcfcfc;
+	box-shadow: 0 1px 2px rgba(34, 25, 25, 0.4);
+	margin: 0 2px 15px;
+	padding: 15px;
+	padding-bottom: 10px;
+	transition: opacity .4s ease-in-out;
+  display: inline-block;
+  column-break-inside: avoid;
+}
+
+div#columns figure img {
+	width: 100%; height: auto;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 15px;
+	margin-bottom: 5px;
+}
+
+div#columns figure figcaption {
+  font-size: .9rem;
+	color: #444;
+  line-height: 1.5;
+}
+
+div#columns small { 
+  font-size: 1rem;
+  float: right; 
+  text-transform: uppercase;
+  color: #aaa;
+} 
+
+div#columns small a { 
+  color: #666; 
+  text-decoration: none; 
+  transition: .4s color;
+}
+
+div#columns:hover figure:not(:hover) {
+	opacity: 0.4;
+}
+
+@media screen and (max-width: 750px) { 
+  #columns { column-gap: 0px; }
+  #columns figure { width: 100%; }
+}
 </style>
 </head>
 <body class="w3-light-grey">
@@ -54,6 +111,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <a href="#hostpital" class="w3-bar-item w3-button w3-padding"><i class="fa fa-hospital-o fa-fw"></i>  Больницы</a>
     <a href="#industry" class="w3-bar-item w3-button w3-padding"><i class="fa fa-industry fa-fw"></i>  Производство</a>
     <a href="#delivery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plane fa-fw"></i>  Доставка с зарубежа</a>
+    <a href="#gallery" class="w3-bar-item w3-button w3-padding"><i class="fa fa-camera fa-fw"></i>  Доставка с зарубежа</a>
     <!-- <a href="#stations_menu" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cubes fa-fw"></i>  Строительство станций</a> -->
 <br><br>
   </div>
@@ -203,15 +261,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </table>
       </div>
 
-      <p></p>
-      <p></p>
-      <p></p>
-      <p></p>
-      <br>
-      <br>
-      <br>
-      <br>
+     
+  </div>
+  <hr>
 
+  <div class="w3-panel">
+    <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-full">
         <br>
         <br>
@@ -223,8 +278,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <div id="container%" style="height: 400px; min-width: 310px"></div>
       </div>
       </div>
-  </div>
-  <hr>
+      </div>
   
   
    <header class="w3-container" style="padding-top:22px" id="industry">
@@ -398,26 +452,31 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         </div>
 
 
-<!-- 
-          <header class="w3-container" style="padding-top:22px" id="stations_menu">
-            <h5><b><i class="fa fa-cubes"></i> Строительство станций</b></h5>
+
+          <header class="w3-container" style="padding-top:22px" id="gallery">
+            <h5><b><i class="fa fa-camera"></i> Галлерея</b></h5>
           </header>
           <div class="w3-panel">
             <div class="w3-row-padding" style="margin:0 -16px">
               
-              <div class="w3-third">
-                <h5>Станции</h5>
-                <table class="w3-table w3-striped w3-white" id="stations">
-                </table>
-              </div>
-              
-              <div class="w3-twothird">
-                <h5>Карта станций</h5>
-                <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3A684a1bf4066873ab85251bbd24388af44700d105f56c48d0cda30251c8c3d138&amp;source=constructor" width="100%" height="500" frameborder="0"></iframe>
+              <div class="w3-full">
+                <div id="columns">
+
+                  <figure>
+                  <img src="/img/23.jpeg">
+                  <figcaption>Наши герои в полной защите</figcaption>
+                  </figure>
+                  
+                  <figure>
+                    <img src="/img/БСМП.jpg">
+                    <figcaption>Больница скорой медицинской помощи</figcaption>
+                    </figure>
+
+                  </div>
               </div>
             </div>
           </div>
-          <hr> -->
+          <hr>
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
