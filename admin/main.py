@@ -316,7 +316,10 @@ def calculate():
 
     data_now["tubes_data"] = new_t
 
-    data_now["statuses"] = statuses.find()
+    data_now["statuses"] = {"Общее": {}}
+
+    for ob in statuses.find():
+        data_now["statuses"][obj["object"]] = {"status1": obj["status1"], "proc1": obj["proc1"], "status2": obj["status2"], "proc2": obj["proc2"]}
 
     data_now_db.insert_one(data_now)
 
