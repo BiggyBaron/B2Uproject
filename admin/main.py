@@ -54,6 +54,7 @@ dash = db['dash']
 needs = db['needs']
 data_now_db = db['data_now']
 sklad = db["sklad"]
+statuses = db["statuses"]
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -314,6 +315,8 @@ def calculate():
     new_t = tubes_calc()
 
     data_now["tubes_data"] = new_t
+
+    data_now["statuses"] = statuses.find()
 
     data_now_db.insert_one(data_now)
 

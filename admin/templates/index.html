@@ -779,6 +779,13 @@ function w3_close() {
       var a = 0;
     }
 
+    document.getElementById("podgotovka_mest").innerHTML = data["statuses"][hosp_name]["status1"]
+    document.getElementById("podgotovka_mest_proc").innerHTML = data["statuses"][hosp_name]["proc1"]
+    document.getElementById("podgotovka_mest_proc").style.width = data["statuses"][hosp_name]["proc1"]
+    document.getElementById("stroitelstvo_zdaniya").innerHTML = data["statuses"][hosp_name]["status2"]
+    document.getElementById("stroitelstvo_zdaniya_proc").innerHTML = data["statuses"][hosp_name]["proc2"]
+    document.getElementById("stroitelstvo_zdaniya_proc").style.width = data["statuses"][hosp_name]["proc2"]
+
     // data["tubes_data"]
     
   }
