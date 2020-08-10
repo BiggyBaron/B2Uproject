@@ -475,6 +475,9 @@ def index():
 
     tempg = '''
     </div>
+    <header class="w3-container" style="padding-top:22px">
+    <h5><b><i class="fa fa-area-chart"></i> Графики производства</b></h5>
+  </header>
     <div class="w3-full">
     <table class="w3-table w3-striped w3-white">
           <tr>
