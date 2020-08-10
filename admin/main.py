@@ -328,7 +328,173 @@ def calculate():
 @app.route("/", methods=["GET", "POST"])
 @basic_auth.required
 def index():
+
+    tubes_date = datetime.datetime(2020, 8, 20)
+    cons_date = datetime.datetime(2020, 8, 20)
+    krb_date = datetime.datetime(2020, 8, 20)
+    station_date = datetime.datetime(2020, 8, 27)
+    today = datetime.datetime.now()
+
+    template = '''<tr>
+            <td>Проложено труб внутрий зданий</td>
+            <td><i id="">200/1500</i></td>
+            <td><i id="">10 дней</i></td>
+          </tr>
+          '''
+    
     calculate()
+
+    data2send = data_now_db.find_one(sort=[( '_id', pymongo.DESCENDING )])
+
+    objects = dash.distinct("object")
+
+    tubes_done = [0]*len(list(data2send["Объекты"].keys()))
+    cons_installed = [0]*len(list(data2send["Объекты"].keys()))
+    krbrsh_installed = [0]*len(list(data2send["Объекты"].keys()))
+    station_installed = [0]*len(list(data2send["Объекты"].keys()))
+
+    details = [0, 0, 0, 0, 0, 0, 0, 0]
+    production = [0, 0, 0, 0, 0, 0, 0, 0]
+    installed = [0, 0, 0, 0, 0, 0, 0, 0]
+
+    temp0 = '''
+    <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td>Работы</td>
+    '''
+
+    temp1 = '''
+    <tr>
+            <td>Проложено труб внутри</td>
+    '''
+
+    temp2 = '''
+    <tr>
+            <td>Установлено консолей</td>
+    '''
+
+    temp3 = '''
+    <tr>
+            <td>Установлено КРБ/РШ</td>
+    '''
+
+    temp4 = '''
+    <tr>
+            <td>Установлено станций</td>
+    '''
+
+
+    for i in range(len(objects)):
+
+        temp0 = temp0 + "<td>" + str(objects[i]) + "</td>"
+
+        tubes = data2send["Объекты"][objects[i]]["Проложено труб"]["есть"]
+        tubes_need = data2send["Объекты"][objects[i]]["Проложено труб"]["надо"]
+        tube_done2 = round(float(100)/float(tubes_need)*float(tubes))
+
+        con1 = data2send["Объекты"][objects[i]]["Установлено консолей 1"]["есть"]
+        con3 = data2send["Объекты"][objects[i]]["Установлено консолей 3"]["есть"]
+
+        con1_n = data2send["Объекты"][objects[i]]["Установлено консолей 1"]["надо"]
+        con3_n = data2send["Объекты"][objects[i]]["Установлено консолей 3"]["надо"]
+
+        c_all = round(float(100)/(float(con1_n)+float(con3_n))*(float(con1)+float(con3)))
+
+        krb_done = data2send["Объекты"][objects[i]]["КРБ"]["есть"]
+        rsh_done = data2send["Объекты"][objects[i]]["РШ"]["есть"]
+
+        krb_need = data2send["Объекты"][objects[i]]["КРБ"]["надо"]
+        rsh_need = data2send["Объекты"][objects[i]]["РШ"]["надо"]
+
+        krb_rsh = round(float(100)/(float(krb_need)+float(rsh_need))*(float(krb_done)+float(rsh_done)))
+
+        s1_done = data2send["Объекты"][objects[i]]["Ваакум"]["есть"]
+        s2_done = data2send["Объекты"][objects[i]]["Воздух"]["есть"]
+        s3_done = data2send["Объекты"][objects[i]]["Кислород"]["есть"]
+
+        s1_need = data2send["Объекты"][objects[i]]["Ваакум"]["надо"]
+        s2_need = data2send["Объекты"][objects[i]]["Воздух"]["надо"]
+        s3_need = data2send["Объекты"][objects[i]]["Кислород"]["надо"]
+
+        s_done = float(s1_done)+float(s2_done)+float(s3_done)
+        s_need = float(s1_need)+float(s2_need)+float(s3_need)
+
+        s = round(float(100)/float(s_need)*float(s_done))
+
+        tubes_done[i] = tube_done2
+
+        temp1 = temp1 + "<td>" + str(tube_done2) + "%</td>"
+
+        cons_installed[i] = c_all
+
+        temp2 = temp2 + "<td>" + str(c_all) + "%</td>"
+
+        krbrsh_installed[i] = krb_rsh
+
+        temp3 = temp3 + "<td>" + str(krb_rsh) + "%</td>"
+
+        station_installed[i] = s
+
+        temp4 = temp4 + "<td>" + str(s) + "%</td>"
+
+    tubes_done.append( (tubes_date - today).days )
+    cons_installed.append( (cons_date - today).days )
+    krbrsh_installed.append( (krb_date - today).days )
+    station_installed.append( (station_date - today).days )
+
+    temp0 = temp0 + "<td>Срок дни</td></tr>"
+    temp1 = temp1 + "<td>" + str((tubes_date - today).days) + "</td></tr>"
+    temp2 = temp2 + "<td>" + str((cons_date - today).days) + "</td></tr>"
+    temp3 = temp3 + "<td>" + str((krb_date - today).days) + "</td></tr>"
+    temp4 = temp4 + "<td>" + str((station_date - today).days) + "</td></tr>"
+
+    ## Details and production
+    details[0] = round(100/float(data2send["консоль1"]["надо"])*1000)
+    details[1] = round(100/float(data2send["консоль3"]["надо"])*100)
+    details[2] = round(100/float(data2send["крб"]["надо"])*float(data2send["крб"]["есть"]))
+    details[3] = round(100/float(data2send["рш"]["надо"])*float(data2send["рш"]["есть"]))
+    details[4] = round(100/float(data2send["кис"]["надо"])*float(data2send["Доставлено деталей"]["есть"]))
+    details[5] = round(100/float(data2send["vac_Доставлено деталей"]["надо"])*float(data2send["vac_Доставлено деталей"]["есть"]))
+    details[6] = round(100/float(data2send["comp_Доставлено деталей"]["надо"])*float(data2send["comp_Доставлено деталей"]["есть"]))
+
+    production[0] = round(100/float(data2send["консоль1"]["надо"])*float(data2send["консоль1"]["есть"]))
+    production[1] = round(100/float(data2send["консоль3"]["надо"])*float(data2send["консоль3"]["есть"]))
+    production[2] = round(100/float(data2send["крб"]["надо"])*float(data2send["крб"]["есть"]))
+    production[3] = round(100/float(data2send["рш"]["надо"])*float(data2send["рш"]["есть"]))
+    production[4] = round(100/float(data2send["кис"]["надо"])*float(data2send["кис"]["есть"]))
+    production[5] = round(100/float(data2send["вак"]["надо"])*float(data2send["вак"]["есть"]))
+    production[6] = round(100/float(data2send["комп"]["надо"])*float(data2send["комп"]["есть"]))
+
+    installed[0] = round(100/float(data2send["Объекты"]["Общее"]["Установлено консолей 1"]["надо"])*float(data2send["Объекты"]["Общее"]["Установлено консолей 1"]["есть"]))
+    installed[1] = round(100/float(data2send["Объекты"]["Общее"]["Установлено консолей 3"]["надо"])*float(data2send["Объекты"]["Общее"]["Установлено консолей 3"]["есть"]))
+    installed[2] = round(100/float(data2send["Объекты"]["Общее"]["КРБ"]["надо"])*float(data2send["Объекты"]["Общее"]["КРБ"]["есть"]))
+    installed[3] = round(100/float(data2send["Объекты"]["Общее"]["РШ"]["надо"])*float(data2send["Объекты"]["Общее"]["РШ"]["есть"]))
+    installed[4] = round(100/float(data2send["Объекты"]["Общее"]["Кислород"]["надо"])*float(data2send["Объекты"]["Общее"]["Кислород"]["есть"]))
+    installed[5] = round(100/float(data2send["Объекты"]["Общее"]["Ваакум"]["надо"])*float(data2send["Объекты"]["Общее"]["Ваакум"]["есть"]))
+    installed[6] = round(100/float(data2send["Объекты"]["Общее"]["Воздух"]["надо"])*float(data2send["Объекты"]["Общее"]["Воздух"]["есть"]))
+
+    tempg = '''
+    <table class="w3-table w3-striped w3-white">
+          <tr>
+            <td>Тип работ</td>
+            <td>Консоль 1 газ</td>
+            <td>Консоль 3 газ</td>
+            <td>КРБ</td>
+            <td>РШ</td>
+            <td>Ст. О2</td>
+            <td>Вак. ст.</td>
+            <td>Ст. воз.</td>
+          </tr>
+          <tr>
+            <td>Заготовки и детали</td>
+            <td>
+    '''
+    tempg = tempg + str(details[0]) + "%</td><td>" + str(details[1]) + "%</td><td>" + str(details[2]) + "%</td><td>" + str(details[3]) + "%</td><td>" + str(details[4]) + "%</td><td>" + str(details[5]) + "%</td><td>" + str(details[6]) + "%</td></tr><tr><td>Произведено</td><td>"
+    tempg = tempg + str(production[0]) + "%</td><td>" + str(production[1]) + "%</td><td>" + str(production[2]) + "%</td><td>" + str(production[3]) + "%</td><td>" + str(production[4]) + "%</td><td>" + str(production[5]) + "%</td><td>" + str(production[6]) + "%</td></tr><tr><td>Установлено</td><td>"
+    tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table>"
+
+    table = temp0 + temp1 + temp2 + temp3 + temp4 + tempg
+
     return render_template(
         "index.html", **locals())
 
