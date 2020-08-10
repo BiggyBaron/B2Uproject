@@ -493,7 +493,7 @@ def index():
     tempg = tempg + str(production[0]) + "%</td><td>" + str(production[1]) + "%</td><td>" + str(production[2]) + "%</td><td>" + str(production[3]) + "%</td><td>" + str(production[4]) + "%</td><td>" + str(production[5]) + "%</td><td>" + str(production[6]) + "%</td></tr><tr><td>Установлено</td><td>"
     tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table>"
 
-    table = temp0 + temp1 + temp2 + temp3 + temp4 + tempg
+    table = Markup(temp0 + temp1 + temp2 + temp3 + temp4 + tempg)
 
     return render_template(
         "index.html", **locals())
