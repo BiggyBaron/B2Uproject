@@ -474,6 +474,7 @@ def index():
     installed[6] = round(100/float(data2send["Объекты"]["Общее"]["Воздух"]["надо"])*float(data2send["Объекты"]["Общее"]["Воздух"]["есть"]))
 
     tempg = '''
+    <br><br><br><br><hr>
     <table class="w3-table w3-striped w3-white">
           <tr>
             <td>Тип работ</td>
