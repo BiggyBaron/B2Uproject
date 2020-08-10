@@ -474,7 +474,8 @@ def index():
     installed[6] = round(100/float(data2send["Объекты"]["Общее"]["Воздух"]["надо"])*float(data2send["Объекты"]["Общее"]["Воздух"]["есть"]))
 
     tempg = '''
-    <br><br><br><br><hr>
+    </div>
+    <div class="w3-full">
     <table class="w3-table w3-striped w3-white">
           <tr>
             <td>Тип работ</td>
@@ -492,7 +493,7 @@ def index():
     '''
     tempg = tempg + str(details[0]) + "%</td><td>" + str(details[1]) + "%</td><td>" + str(details[2]) + "%</td><td>" + str(details[3]) + "%</td><td>" + str(details[4]) + "%</td><td>" + str(details[5]) + "%</td><td>" + str(details[6]) + "%</td></tr><tr><td>Произведено</td><td>"
     tempg = tempg + str(production[0]) + "%</td><td>" + str(production[1]) + "%</td><td>" + str(production[2]) + "%</td><td>" + str(production[3]) + "%</td><td>" + str(production[4]) + "%</td><td>" + str(production[5]) + "%</td><td>" + str(production[6]) + "%</td></tr><tr><td>Установлено</td><td>"
-    tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table>"
+    tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table></div>"
 
     table = Markup(temp0 + temp1 + temp2 + temp3 + temp4 + tempg)
 
