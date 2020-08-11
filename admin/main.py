@@ -508,6 +508,7 @@ def index(city=""):
     table = calc_table(dash, needs, statuses, data_now_db)
     senddata = data_now_db.find_one(sort=[( '_id', pymongo.DESCENDING )])
     senddata["_id"] = 0
+    senddata = str(senddata)
     return render_template(
         "index.html", **locals())
 
