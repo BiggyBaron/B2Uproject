@@ -513,35 +513,6 @@ def index(city=""):
         "index.html", **locals())
 
 
-# @socketio.on('connect', namespace='/test/<city>')
-# def test_connect(city):
-#     if city == "1esh":
-#         db = client.b2u
-#         users = db['users']
-#         problems = db['problems']
-#         msgs = db['messages']
-#         dash = db['dash']
-#         needs = db['needs']
-#         data_now_db = db['data_now']
-#         sklad = db["sklad"]
-#         statuses = db["statuses"]
-#     elif city == "2esh":
-#         db = client["2esh"]
-#         users = db['users']
-#         problems = db['problems']
-#         msgs = db['messages']
-#         dash = db['dash']
-#         needs = db['needs']
-#         data_now_db = db['data_now']
-#         sklad = db["sklad"]
-#         statuses = db["statuses"]
-
-#     calculate(dash, needs, statuses, data_now_db)
-#     senddata = data_now_db.find_one(sort=[( '_id', pymongo.DESCENDING )])
-#     senddata["_id"] = 0
-#     emit('my response', senddata)
-
-
 @app.route("/enter", methods=["GET", "POST"])
 def enter():
     return render_template(
