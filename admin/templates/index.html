@@ -830,7 +830,7 @@ function w3_close() {
       // };
       // runFunction();
       // var t=setInterval(runFunction,3600000);
-        data = {{senddata}};
+        data = {{senddata|tojson|safe}};
         makeit(data);
   });
 
