@@ -446,7 +446,7 @@ def index():
     temp1 = temp1 + "<td>" + str((tubes_date - today).days) + "</td></tr>"
     temp2 = temp2 + "<td>" + str((cons_date - today).days) + "</td></tr>"
     temp3 = temp3 + "<td>" + str((krb_date - today).days) + "</td></tr>"
-    temp4 = temp4 + "<td>" + str((station_date - today).days) + "</td></tr>"
+    temp4 = temp4 + "<td>" + str((station_date - today).days) + "</td></tr></table>"
 
     ## Details and production
     details[0] = round(100/float(data2send["консоль1"]["надо"])*1000)
@@ -474,8 +474,6 @@ def index():
     installed[6] = round(100/float(data2send["Объекты"]["Общее"]["Воздух"]["надо"])*float(data2send["Объекты"]["Общее"]["Воздух"]["есть"]))
 
     tempg = '''
-    </div>
-    <div class="w3-full">
     <table class="w3-table w3-striped w3-white">
           <tr>
             <td>Тип работ</td>
@@ -493,7 +491,7 @@ def index():
     '''
     tempg = tempg + str(details[0]) + "%</td><td>" + str(details[1]) + "%</td><td>" + str(details[2]) + "%</td><td>" + str(details[3]) + "%</td><td>" + str(details[4]) + "%</td><td>" + str(details[5]) + "%</td><td>" + str(details[6]) + "%</td></tr><tr><td>Произведено</td><td>"
     tempg = tempg + str(production[0]) + "%</td><td>" + str(production[1]) + "%</td><td>" + str(production[2]) + "%</td><td>" + str(production[3]) + "%</td><td>" + str(production[4]) + "%</td><td>" + str(production[5]) + "%</td><td>" + str(production[6]) + "%</td></tr><tr><td>Установлено</td><td>"
-    tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table></div>"
+    tempg = tempg + str(installed[0]) + "%</td><td>" + str(installed[1]) + "%</td><td>" + str(installed[2]) + "%</td><td>" + str(installed[3]) + "%</td><td>" + str(installed[4]) + "%</td><td>" + str(installed[5]) + "%</td><td>" + str(installed[6]) + "%</td></tr></table>"
 
     table = Markup(temp0 + temp1 + temp2 + temp3 + temp4 + tempg)
 
