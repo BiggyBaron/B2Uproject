@@ -821,7 +821,7 @@ function w3_close() {
 
   $(document).ready(function(){
       function runFunction(){
-        var socket = io.connect('http://' + document.domain + ':' + location.port + '/test', {'forceNew': true});
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/test/1esh', {'forceNew': true});
         socket.on('my response', function(msg) {
           data = msg;
           makeit(data);
