@@ -791,6 +791,16 @@ def text_handler(message):
             }
             dash.insert_one(msg)
             markup = types.ForceReply(selective=False)
+            bot.send_message(message.chat.id, "Какое количество произведенных станций без компрессора в КНР сейчас?", reply_markup=markup)
+        if message.reply_to_message.text == 'Какое количество произведенных станций без компрессора в КНР сейчас?':
+            msg = {
+            "from": str(message.chat.id),
+            "time": message.date,
+            "data": message.text,
+            "type": "a7"
+            }
+            dash.insert_one(msg)
+            markup = types.ForceReply(selective=False)
             bot.send_message(message.chat.id, "Какое количество доставленных в РК станций сейчас?", reply_markup=markup)
         if message.reply_to_message.text == 'Какое количество доставленных в РК станций сейчас?':
             msg = {
