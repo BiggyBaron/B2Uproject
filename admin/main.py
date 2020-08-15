@@ -219,7 +219,7 @@ def calculate(dash, needs, statuses, data_now_db):
     data_now["рш"] = {"надо": needed_data["total"]["rsh"], "есть": rsh}
     data_now["комп"] = {"надо": needed_data["total"]["comp"], "есть": comp_station}
     data_now["вак"] = {"надо": needed_data["total"]["vac"], "есть": vac_station}
-    data_now["кис"] = {"надо": needed_data["total"]["oxy"], "есть": oxy_station}
+    data_now["кис"] = {"надо": needed_data["total"]["oxy"], "есть": oxy_station , "без": no_oxy}
     
     data_now["Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_oxy, "без": no_oxy}
     data_now["Доставлено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_oxy}
