@@ -155,6 +155,7 @@ def calculate(dash, needs, statuses, data_now_db):
     delv_vac = dash.find_one({"type": "a4"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     prod_comp = dash.find_one({"type": "a5"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     delv_comp = dash.find_one({"type": "a6"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
+    no_oxy = dash.find_one({"type": "a7"}, sort=[( '_id', pymongo.DESCENDING )])["data"]
     sum_station_prod = float(prod_oxy) + float(prod_vac) + float(prod_comp)
 
     obj_data = {"total": {"tubes": 0, "krb": 0, "rsh": 0, "cons1": 0, "cons3": 0, "vac": 0, "comp": 0, "oxy": 0}}
@@ -220,7 +221,7 @@ def calculate(dash, needs, statuses, data_now_db):
     data_now["вак"] = {"надо": needed_data["total"]["vac"], "есть": vac_station}
     data_now["кис"] = {"надо": needed_data["total"]["oxy"], "есть": oxy_station}
     
-    data_now["Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_oxy}
+    data_now["Произведено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": prod_oxy, "без": no_oxy}
     data_now["Доставлено деталей"] = {"надо": needed_data["total"]["oxy"], "есть": delv_oxy}
 
     data_now["vac_Произведено деталей"] = {"надо": needed_data["total"]["vac"], "есть": prod_vac}
