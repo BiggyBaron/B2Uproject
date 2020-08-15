@@ -756,9 +756,9 @@ function w3_close() {
     krb_prod.innerHTML = data["крб"]["есть"] + "/" + data["крб"]["надо"];
     comp_prod.innerHTML = data["комп"]["есть"] + "/" + data["комп"]["надо"];
     vac_prod.innerHTML = data["вак"]["есть"] + "/" + data["вак"]["надо"];
-    oxy_prod.innerHTML = data["кис"]["без"] + "/" + data["кис"]["есть"] + "/" + data["кис"]["надо"];
+    oxy_prod.innerHTML = data["кис"]["есть"] + "/" + data["кис"]["надо"];
 
-    details_done.innerHTML = data["Произведено деталей"]["есть"] + "/" + data["Произведено деталей"]["надо"]
+    details_done.innerHTML = data["кис"]["без"] + "/" + data["Произведено деталей"]["есть"] + "/" + data["Произведено деталей"]["надо"]
     details_delivered.innerHTML = data["Доставлено деталей"]["есть"] + "/" + data["Доставлено деталей"]["надо"]
     vac_details_done.innerHTML = data["vac_Произведено деталей"]["есть"] + "/" + data["vac_Произведено деталей"]["надо"]
     vac_details_delivered.innerHTML = data["vac_Доставлено деталей"]["есть"] + "/" + data["vac_Доставлено деталей"]["надо"]
